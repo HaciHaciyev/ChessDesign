@@ -1,0 +1,31 @@
+<div class="entrance-page">
+  <div *ngIf="message()"><p class="message">{{ message() }}</p></div>
+  <a routerLink="/" class="chessland">Chessland</a>
+
+  <div [ngClass]="containerClass()" id="container">
+
+    <login />
+    <registration />
+
+    <div class="overlay-container">
+      <div class="overlay">
+        <div class="overlay-panel overlay-left">
+          <h1 class="entrance-h1">Welcome Back to Chessland!</h1>
+          <p class="entrance-p">We are glad to see you again on our chess platform.</p>
+          <button class="ghost" id="signIn" (click)="handleTogglePanel()">
+            Sign In
+          </button>
+        </div>
+        <div class="overlay-panel overlay-right">
+          <h1 class="entrance-h1">Hello, Friend!</h1>
+          <p class="entrance-p">Register if you don't have an account yet and start playing chess!</p>
+          <button class="ghost" id="signUp" (click)="handleTogglePanel()">
+            Sign Up
+          </button>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>

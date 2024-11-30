@@ -1,0 +1,10 @@
+<div class="form-container sign-up-container">
+  <form class="entrance-form" (ngSubmit)="handleSubmit()">
+    <h1 class="entrance-h1">Create Account</h1>
+    <input class="entrance-input" type="text" name="username" placeholder="username" [(ngModel)]="formData.username"/>
+    <input class="entrance-input" type="email" name="email" placeholder="email" [(ngModel)]="formData.email"/>
+    <input class="entrance-input" type="password" name="password" placeholder="password" [(ngModel)]="formData.password"/>
+    <input class="entrance-input" type="password" name="passwordConfirmation" placeholder="passwordConfirmation" [(ngModel)]="formData.passwordConfirmation"/>
+    <button class="entrance-button" type="submit">Sign Up</button>
+  </form>
+</div>

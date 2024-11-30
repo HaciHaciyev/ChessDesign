@@ -1,0 +1,8 @@
+<div class="form-container sign-in-container">
+  <form class="entrance-form" (ngSubmit)="handleSubmit()">
+    <h1 class="entrance-h1">Sign in</h1>
+    <input class="entrance-input" type="text" name="username" placeholder="Username" [(ngModel)]="formData.username">
+    <input class="entrance-input" type="password" name="password" placeholder="Password" [(ngModel)]="formData.password">
+    <button class="entrance-button" type="submit">Sign In</button>
+  </form>
+</div>
