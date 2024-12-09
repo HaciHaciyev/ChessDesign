@@ -3,7 +3,10 @@ import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import {map, Observable, Subscriber, switchMap, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 
-type ProfilePicture = { profilePicture: number[], imageType: string };
+interface ProfilePicture {
+  profilePicture: Uint8Array;
+  imageType: string;
+}
 
 @Injectable({
   providedIn: 'root',
@@ -24,13 +27,13 @@ export class ProfilePictureService {
         observer.complete();
       };
 
-      reader.onerror = (error) => {
+      reader.onerror = (error: ProgressEvent<FileReader>) => {
         observer.error(error);
       };
 
       reader.readAsArrayBuffer(picture);
     }).pipe(
-      switchMap((byteArray) => this.http.put(`${this.apiUrl}/put-profile-picture`, byteArray, { headers })),
+      switchMap((byteArray: Uint8Array) => this.http.put(`${this.apiUrl}/put-profile-picture`, byteArray, { headers })),
       catchError(this.handleError)
     );
   }
@@ -40,11 +43,7 @@ export class ProfilePictureService {
       .get<ProfilePicture>(`${this.apiUrl}/profile-picture`)
       .pipe(
         map((response: ProfilePicture) => {
-          const byteArray = new Uint8Array(response.profilePicture);
-          const blob = new Blob([byteArray], { type: response.imageType });
-          const file = new File([blob], `profile-picture.${response.imageType}`, { type: response.imageType });
-
-          return URL.createObjectURL(file);
+          return `data:${response.imageType};base64,${response.profilePicture}`
         }),
         catchError(this.handleError)
       );
@@ -57,7 +56,7 @@ export class ProfilePictureService {
   }
 
   private handleError(error: HttpErrorResponse) {
-    let errorMessage = 'An unknown error occurred!';
+    let errorMessage: string = 'An unknown error occurred!';
     if (error.error instanceof ErrorEvent) {
       errorMessage = `Error: ${error.error.message}`;
     } else {
