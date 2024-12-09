@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {IRegistration} from './IRegistration';
 import {FormsModule} from '@angular/forms';
-import {EntranceService} from '../service/EntranceService';
+import {AuthService} from '../../shared/service/AuthService';
 import {Router} from '@angular/router';
 import {MessageService} from '../service/MessageService';
 
@@ -13,7 +13,7 @@ import {MessageService} from '../service/MessageService';
 export class Registration {
   formData: IRegistration = {username: "", email: "", password: "", passwordConfirmation: ""};
 
-  constructor(private service: EntranceService,
+  constructor(private service: AuthService,
               private router: Router,
               private messageService: MessageService) {}
 

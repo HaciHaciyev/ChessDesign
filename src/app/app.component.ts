@@ -1,18 +1,9 @@
-import {Component, signal, WritableSignal} from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import {Entrance} from './features/entrance/entrance.component';
-import {NgIf} from '@angular/common';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Entrance, NgIf],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  templateUrl: `./app.component.html`,
+  styleUrls: ['./app.component.scss'],
+  imports: []
 })
-export class AppComponent {
-  showEntrance: WritableSignal<boolean> = signal(false);
-
-  toggleEntrance() {
-    this.showEntrance.set(!this.showEntrance);
-  }
-}
+export class AppComponent {}

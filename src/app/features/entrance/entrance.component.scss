@@ -4,6 +4,20 @@
   box-sizing: border-box;
 }
 
+.chessland {
+  font-family: "Georgia", Serif, serif;
+  color: #f5e0c3;
+  cursor: pointer;
+  position: fixed;
+  top: 15px;
+  left: 20px;
+  font-size: 24px;
+  text-align: left;
+  text-shadow: 7px 7px 12px rgba(0, 0, 0, 0.7);
+  text-decoration: none;
+  display: flex;
+}
+
 .message {
   position: relative;
   font-family: "Georgia", Serif, serif;
@@ -17,7 +31,7 @@
 }
 
 .entrance-page {
-  background: linear-gradient(190deg, rgb(46, 100, 100), rgb(59, 60, 54));
+  background: #2D6262;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
