@@ -1,10 +1,9 @@
 import {Component} from '@angular/core';
-import {RouterLink} from '@angular/router';
-import {ProfilePictureComponent} from '../shared/profile-picture/profile-picture.component';
+import {NavbarComponent} from '../shared/navbar/navbar.component';
 
 @Component({
   selector: 'app-home',
-  imports: [ProfilePictureComponent, RouterLink],
+  imports: [NavbarComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })

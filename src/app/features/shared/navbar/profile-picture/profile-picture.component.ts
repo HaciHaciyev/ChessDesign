@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit, signal, WritableSignal} from '@angular/cor
 import {ProfilePictureService} from './service/ProfilePictureService';
 import {NgIf} from '@angular/common';
 import {RouterLink} from '@angular/router';
-import {StorageService, StorageType} from '../service/StorageService';
+import {StorageService, StorageType} from '../../service/StorageService';
 
 @Component({
   selector: 'profile-picture',
@@ -65,4 +65,18 @@ export class ProfilePictureComponent implements OnInit, OnDestroy {
 
     this.isDropdownPage.set(false)
   }
+
+  handleKeyDown(event: KeyboardEvent, action?: string): void {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+
+      if (action === 'logout') {
+        this.handleLogout();
+        return;
+      }
+
+      this.toggleDropdown();
+    }
+  }
+
 }
