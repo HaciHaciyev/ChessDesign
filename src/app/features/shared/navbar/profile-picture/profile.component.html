@@ -19,6 +19,17 @@
   >
     <ul>
       <li>
+        <button class="icon-button" (click)="onFileInputClick()">
+          <i class="icon-pencil" aria-hidden="true"></i> Change Picture
+        </button>
+        <input #fileInput type="file" accept="image/*" (change)="onFileSelected($event)" hidden>
+      </li>
+      <li>
+        <button class="icon-button" (click)="deleteProfilePicture()">
+          <i class="icon-trash" aria-hidden="true"></i> Delete Picture
+        </button>
+      </li>
+      <li>
         <a [routerLink]="['/settings']">Settings</a>
       </li>
       <li>

@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit, signal, WritableSignal} from '@angular/core';
+import {Component, ElementRef, OnDestroy, OnInit, signal, ViewChild, WritableSignal} from '@angular/core';
 import {ProfilePictureService} from './service/ProfilePictureService';
 import {NgIf} from '@angular/common';
 import {Router, RouterLink} from '@angular/router';
@@ -8,15 +8,16 @@ import {debounceTime, Subject} from 'rxjs';
 @Component({
   selector: 'profile-picture',
   imports: [NgIf, RouterLink],
-  templateUrl: './profile-picture.component.html',
-  styleUrls: ['./profile-picture.component.scss']
+  templateUrl: './profile.component.html',
+  styleUrls: ['./profile.component.scss']
 })
-export class ProfilePictureComponent implements OnInit, OnDestroy {
+export class ProfileComponent implements OnInit, OnDestroy {
   profilePictureBase64: string | null = null;
   private closeSubject: Subject<void> = new Subject<void>();
   private hoverSubject: Subject<void> = new Subject<void>();
   private isInsideDropdown: WritableSignal<boolean> = signal<boolean>(false);
   isDropdownPage: WritableSignal<boolean> = signal<boolean>(false);
+  @ViewChild('fileInput') fileInput!: ElementRef;
 
   constructor(private service: ProfilePictureService,
               private storage: StorageService,
@@ -67,6 +68,10 @@ export class ProfilePictureComponent implements OnInit, OnDestroy {
 
   deleteProfilePicture(): void {
     this.service.deleteProfilePicture();
+  }
+
+  onFileInputClick(): void {
+    this.fileInput.nativeElement.click();
   }
 
   onFileSelected(event: Event): void {
