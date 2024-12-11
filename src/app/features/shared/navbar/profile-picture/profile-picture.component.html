@@ -1,27 +1,28 @@
-<div class="profile-picture-container">
+<div
+  class="profile-picture-container"
+  (mouseenter)="onMouseEnter()"
+  (mouseleave)="onMouseLeave()">
+
   <button
     class="profile-picture-button"
-    (click)="toggleDropdown()"
     (keydown)="handleKeyDown($event)"
     aria-haspopup="true"
     [attr.aria-expanded]="isDropdownPage()"
   >
-    <img
-      class="profile-picture"
-      [src]="profilePictureBase64!"
-      alt="User Profile Picture"
-      width="400"
-      height="200"
-    />
+    <img class="profile-picture" [src]="profilePictureBase64!" alt="User Profile Picture"/>
   </button>
 
-  <div class="dropdown-page" *ngIf="isDropdownPage()">
+  <div class="dropdown-page"
+       *ngIf="isDropdownPage()"
+       (mouseenter)="onDropdownMouseEnter()"
+       (mouseleave)="onDropdownMouseLeave()"
+  >
     <ul>
       <li>
-        <a [routerLink]='["/settings"]'>Settings</a>
+        <a [routerLink]="['/settings']">Settings</a>
       </li>
       <li>
-        <button (click)="handleLogout()" (keydown)="handleKeyDown($event, 'logout')">Logout</button>
+        <a (click)="handleLogout()" (keydown)="handleKeyDown($event, 'logout')">Logout</a>
       </li>
     </ul>
   </div>

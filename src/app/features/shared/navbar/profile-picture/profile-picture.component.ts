@@ -1,8 +1,9 @@
 import {Component, OnDestroy, OnInit, signal, WritableSignal} from '@angular/core';
 import {ProfilePictureService} from './service/ProfilePictureService';
 import {NgIf} from '@angular/common';
-import {RouterLink} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 import {StorageService, StorageType} from '../../service/StorageService';
+import {debounceTime, Subject} from 'rxjs';
 
 @Component({
   selector: 'profile-picture',
@@ -12,18 +13,39 @@ import {StorageService, StorageType} from '../../service/StorageService';
 })
 export class ProfilePictureComponent implements OnInit, OnDestroy {
   profilePictureBase64: string | null = null;
+  private closeSubject: Subject<void> = new Subject<void>();
+  private hoverSubject: Subject<void> = new Subject<void>();
+  private isInsideDropdown: WritableSignal<boolean> = signal<boolean>(false);
   isDropdownPage: WritableSignal<boolean> = signal<boolean>(false);
 
-  constructor(private service: ProfilePictureService, private storage: StorageService) {}
+  constructor(private service: ProfilePictureService,
+              private storage: StorageService,
+              private router: Router) {}
 
   ngOnInit() {
     this.loadProfilePicture();
+
+    this.closeSubject.pipe(debounceTime(700)).subscribe(() => {
+      if (this.isInsideDropdown()) {
+        return;
+      }
+      this.isDropdownPage.set(false);
+    });
+
+    this.hoverSubject.subscribe(() => {
+      if (this.closeSubject) {
+        this.closeSubject.next();
+      }
+    });
   }
 
   ngOnDestroy(): void {
     if (this.profilePictureBase64) {
       URL.revokeObjectURL(this.profilePictureBase64);
     }
+
+    this.closeSubject.unsubscribe();
+    this.hoverSubject.unsubscribe();
   }
 
   private loadProfilePicture(): void {
@@ -55,15 +77,15 @@ export class ProfilePictureComponent implements OnInit, OnDestroy {
   }
 
   toggleDropdown(): void {
-    this.isDropdownPage.set(!this.isDropdownPage);
-    console.log("Function toggleDropdown() called:", this.isDropdownPage);
+    this.isDropdownPage.set(!this.isDropdownPage());
   }
 
   handleLogout(): void {
     this.storage.remove(StorageType.JWT_TOKEN);
     this.storage.remove(StorageType.REFRESH_TOKEN);
 
-    this.isDropdownPage.set(false)
+    this.router.navigate(['/entrance']).then();
+    this.isDropdownPage.set(false);
   }
 
   handleKeyDown(event: KeyboardEvent, action?: string): void {
@@ -79,4 +101,21 @@ export class ProfilePictureComponent implements OnInit, OnDestroy {
     }
   }
 
+  onMouseEnter(): void {
+    this.isDropdownPage.set(true);
+  }
+
+  onMouseLeave(): void {
+    this.closeSubject.next();
+  }
+
+  onDropdownMouseEnter(): void {
+    this.isInsideDropdown.set(true);
+    this.hoverSubject.next();
+  }
+
+  onDropdownMouseLeave(): void {
+    this.isInsideDropdown.set(false)
+    this.closeSubject.next();
+  }
 }

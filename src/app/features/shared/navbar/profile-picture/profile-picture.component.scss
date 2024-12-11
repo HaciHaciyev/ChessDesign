@@ -6,8 +6,8 @@
 
 .profile-picture {
   cursor: pointer;
-  width: 43px;
-  height: 43px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   object-fit: cover;
   border: 1px solid #f5f5f5;
@@ -28,10 +28,48 @@
 
 .dropdown-page {
   position: absolute;
-  top: 100%;
+  top: 55px;
   right: 0;
-  background-color: white;
-  border: 1px solid #ccc;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  display: none;
+  background: linear-gradient(135deg, #7d5544, #463433);
+  color: #f5f5f5;
+  width: 180px;
+  border-radius: 8px;
+  box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.5);
+  z-index: 10;
+  padding: 10px 0;
+  animation: fadeIn 0.5s ease forwards;
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  ul li {
+    padding: 12px 16px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+  }
+
+  ul li:hover {
+    background-color: #7d5544;
+  }
+
+  ul li a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
