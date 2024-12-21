@@ -22,7 +22,7 @@
         <button class="icon-button" (click)="onFileInputClick()">
           <i class="icon-pencil" aria-hidden="true"></i> Change Picture
         </button>
-        <input #fileInput type="file" accept="image/*" (change)="onFileSelected($event)" hidden>
+        <input class="input-picture" #fileInput type="file" accept="image/*" (change)="onFileSelected($event)">
       </li>
       <li>
         <button class="icon-button" (click)="deleteProfilePicture()">

@@ -6,7 +6,7 @@ import {StorageService, StorageType} from '../../service/StorageService';
 import {debounceTime, Subject} from 'rxjs';
 
 @Component({
-  selector: 'profile-picture',
+  selector: 'profile',
   imports: [NgIf, RouterLink],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
@@ -17,7 +17,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
   private hoverSubject: Subject<void> = new Subject<void>();
   private isInsideDropdown: WritableSignal<boolean> = signal<boolean>(false);
   isDropdownPage: WritableSignal<boolean> = signal<boolean>(false);
-  @ViewChild('fileInput') fileInput!: ElementRef;
+  @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
+  isFileInputActive: WritableSignal<boolean> = signal<boolean>(false);
 
   constructor(private service: ProfilePictureService,
               private storage: StorageService,
@@ -27,7 +28,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.loadProfilePicture();
 
     this.closeSubject.pipe(debounceTime(700)).subscribe(() => {
-      if (this.isInsideDropdown()) {
+      if (this.isInsideDropdown() || this.isFileInputActive()) {
         return;
       }
       this.isDropdownPage.set(false);
@@ -62,23 +63,40 @@ export class ProfileComponent implements OnInit, OnDestroy {
     });
   }
 
-  putProfilePicture(imageFile: File): void {
-    this.service.uploadProfilePicture(imageFile);
-  }
-
   deleteProfilePicture(): void {
     this.service.deleteProfilePicture();
   }
 
   onFileInputClick(): void {
+    console.log("On file input click.")
+    this.isFileInputActive.set(true);
     this.fileInput.nativeElement.click();
   }
 
   onFileSelected(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    if (input?.files?.[0]) {
-      this.putProfilePicture(input.files[0]);
+    event.stopPropagation();
+    this.isFileInputActive.set(false);
+
+    console.log("On file selected.")
+    const file: File | undefined = (event.target as HTMLInputElement).files?.[0];
+
+    if (file) {
+      this.service.uploadProfilePicture(file).subscribe({
+        next: (success: boolean): void => {
+          if (success) {
+            console.log("Image uploaded successfully!");
+            return;
+          }
+
+          console.error("Image upload failed.");
+        },
+        error: (): void => console.error("An unexpected error occurred.")
+      });
+
+      return;
     }
+
+    console.error("No file selected.");
   }
 
   toggleDropdown(): void {

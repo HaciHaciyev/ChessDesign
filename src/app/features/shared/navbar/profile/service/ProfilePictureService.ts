@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
-import {map, Observable, Subscriber, switchMap, throwError} from 'rxjs';
+import {map, Observable, of, tap, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 
 interface ProfilePicture {
@@ -12,29 +12,25 @@ interface ProfilePicture {
   providedIn: 'root',
 })
 export class ProfilePictureService {
-  private apiUrl = 'http://localhost:9090/chessland/account';
+  private apiUrl: string = 'http://localhost:9090/chessland/account';
 
   constructor(private http: HttpClient) {}
 
-  uploadProfilePicture(picture: File): Observable<any> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/octet-stream' });
+  uploadProfilePicture(file: File): Observable<boolean> {
+    const headers = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/octet-stream',
+      }),
+    };
 
-    return new Observable<Uint8Array>((observer: Subscriber<Uint8Array>) => {
-      const reader = new FileReader();
-
-      reader.onload = () => {
-        observer.next(new Uint8Array(reader.result as ArrayBuffer));
-        observer.complete();
-      };
-
-      reader.onerror = (error: ProgressEvent<FileReader>) => {
-        observer.error(error);
-      };
-
-      reader.readAsArrayBuffer(picture);
-    }).pipe(
-      switchMap((byteArray: Uint8Array) => this.http.put(`${this.apiUrl}/put-profile-picture`, byteArray, { headers })),
-      catchError(this.handleError)
+    return this.http.put(`${this.apiUrl}/put-profile-picture`, file!, headers)
+      .pipe(
+        tap((): void => console.log("Upload image successful")),
+        map((): boolean => true),
+        catchError((error: any): Observable<boolean> => {
+          console.error("Error when trying to upload image.", error);
+          return of(false)
+        })
     );
   }
 
@@ -55,13 +51,13 @@ export class ProfilePictureService {
       .pipe(catchError(this.handleError));
   }
 
-  private handleError(error: HttpErrorResponse) {
+  private handleError(error: HttpErrorResponse): Observable<never> {
     let errorMessage: string = 'An unknown error occurred!';
     if (error.error instanceof ErrorEvent) {
       errorMessage = `Error: ${error.error.message}`;
     } else {
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
-    return throwError(() => new Error(errorMessage));
+    return throwError((): Error => new Error(errorMessage));
   }
 }

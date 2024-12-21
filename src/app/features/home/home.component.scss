@@ -1,14 +1,13 @@
 .home {
+  position: relative;
   width: 100vw;
   height: 100vh;
   overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
-
-  background:
-    linear-gradient(154deg,
-      #5c4033 50%,
-      #000000 50%
-    );
+  background: linear-gradient(154deg,
+    #5c4033 50%,
+    #000000 50%
+  ) fixed;
 }

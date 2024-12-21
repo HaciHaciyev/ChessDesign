@@ -22,7 +22,6 @@ export class Login {
   handleSubmit() {
     this.service.login(this.formData).subscribe({
       next: response => {
-        console.log(response);
 
         if (this.isLoginResponse(response)) {
           this.storage.set(StorageType.JWT_TOKEN, response.refreshToken);
