@@ -45,10 +45,13 @@ export class ProfilePictureService {
       );
   }
 
-  deleteProfilePicture(): Observable<any> {
-    return this.http
+  deleteProfilePicture(): void {
+    console.log("Profile picture service: DELETE.")
+
+    this.http
       .delete(`${this.apiUrl}/delete-profile-picture`)
-      .pipe(catchError(this.handleError));
+      .pipe(catchError(this.handleError))
+      .subscribe(response => console.log(response))
   }
 
   private handleError(error: HttpErrorResponse): Observable<never> {
@@ -58,6 +61,7 @@ export class ProfilePictureService {
     } else {
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
+    console.log(`Error related to profile picture: ${errorMessage}`)
     return throwError((): Error => new Error(errorMessage));
   }
 }

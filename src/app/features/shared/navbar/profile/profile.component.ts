@@ -64,6 +64,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   deleteProfilePicture(): void {
+    console.log("Trying to delete profile picture.")
     this.service.deleteProfilePicture();
   }
 
