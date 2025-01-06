@@ -1,13 +1,67 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+@import url("https://fonts.cdnfonts.com/css/proclamate");
+@import url("https://fonts.googleapis.com/css2?family=Love+Ya+Like+A+Sister&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Satisfy&display=swap");
+
+$home-background: linear-gradient(90deg, #5c4033 50%, #000000 50%) fixed;
+$radial-gradient: radial-gradient(#480d35, #17151d);
+$main-font: "Georgia", serif;
+
 .home {
   position: relative;
   width: 100vw;
   height: 100vh;
   overflow: hidden;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  background: linear-gradient(145deg,
-    #5c4033 50%,
-    #000000 50%
-  ) fixed;
+  background: $home-background;
+  text-align: center;
+  padding: 20px;
+}
+
+.home-text {
+  width: 40%;
+  text-align: left;
+  margin-left: 5%;
+  color: #d4c4bc;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  width: 100%;
+  background: $radial-gradient;
+  display: grid;
+  place-items: center;
+  font-family: $main-font;
+  color: white;
+}
+
+.home-heading {
+  font-family: "Satisfy", cursive;
+  font-size: 3.5rem;
+  color: #e3c3a5;
+  text-shadow: 0 0 10px #5c4033;
+}
+
+.home-paragraph {
+  font-family: $main-font;
+  font-size: 1.5rem;
+  margin: 15px 0;
+  line-height: 1.8;
+  color: #cbb9a8;
+}
+
+.home-close-heading {
+  font-family: "Satisfy", cursive;
+  font-size: 2.5rem;
+  color: #bba294;
+  margin-top: 20px;
+  text-shadow: 0 0 5px #5c4033;
 }
