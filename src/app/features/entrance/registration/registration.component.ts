@@ -2,7 +2,6 @@ import {Component} from '@angular/core';
 import {IRegistration} from './IRegistration';
 import {FormsModule} from '@angular/forms';
 import {AuthService} from '../../shared/service/AuthService';
-import {Router} from '@angular/router';
 import {MessageService} from '../service/MessageService';
 
 @Component({
@@ -14,7 +13,6 @@ export class Registration {
   formData: IRegistration = {username: "", email: "", password: "", passwordConfirmation: ""};
 
   constructor(private service: AuthService,
-              private router: Router,
               private messageService: MessageService) {}
 
   handleSubmit() {
@@ -22,8 +20,7 @@ export class Registration {
       next: response => {
         console.log(response);
         this.messageService.changeMessage("Registration successful. Please verify you email.");
-
-        this.router.navigate(["/"]).then();
+        this.service.handleLogout();
       },
       error: errorResponse => {
         let errorMessage = errorResponse.error!;
