@@ -1,6 +1,4 @@
-import {Component, ElementRef, input, InputSignal, OnInit, ViewChild} from '@angular/core';
-import {Chessground} from 'chessground';
-import {Api} from 'chessground/api';
+import {AfterViewInit, Component, input, InputSignal} from '@angular/core';
 
 @Component({
   selector: 'chess-board',
@@ -8,15 +6,12 @@ import {Api} from 'chessground/api';
   templateUrl: './chess-board.component.html',
   styleUrls: ['./chess-board.component.scss']
 })
-export class ChessBoardComponent implements OnInit {
-  @ViewChild('board', { static: true }) boardElement!: ElementRef;
+export class ChessBoardComponent implements AfterViewInit {
   chessBoardSize: InputSignal<number> = input(280);
   isChessGameActive: InputSignal<boolean> = input(false);
+  private chessBoard: any;
 
-  ngOnInit(): void {
-    const board: Api = Chessground(this.boardElement.nativeElement!, {
-      fen: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
-      orientation: "white"
-    });
+  ngAfterViewInit(): void {
+    this.chessBoard = null; // TODO
   }
 }
