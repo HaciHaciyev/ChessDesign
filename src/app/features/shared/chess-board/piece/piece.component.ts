@@ -16,9 +16,7 @@ export class PieceComponent {
   @Input() color!: Color;
 
   get imagePath(): string {
-    const imagePath = `assets/piece/maestro/${this.color}${this.pieceType}.svg`;
-    console.log(imagePath);
-    return imagePath;
+    return `assets/piece/maestro/${this.color}${this.pieceType}.svg`;
   }
 
   protected readonly Color: typeof Color = Color;

@@ -8,4 +8,6 @@ import {ChessBoardComponent} from '../shared/chess-board/chess-board.component';
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent {}
+export class HomeComponent {
+  protected readonly chessBoardSize: number = 480;
+}

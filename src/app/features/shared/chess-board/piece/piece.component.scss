@@ -7,14 +7,6 @@
 }
 
 .piece img {
-  width: 80%;
+  width: 95%;
   height: auto;
-}
-
-.piece.white {
-  filter: grayscale(0);
-}
-
-.piece.black {
-  filter: invert(1);
 }

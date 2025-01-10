@@ -1,14 +1,19 @@
 <div class="home">
-  <div class="home-text">
-    <h1 class="home-heading">Welcome to Chessland!</h1>
-    <p class="home-paragraph">
-      Step into the timeless world of chess, where strategy meets creativity.
-      Challenge your friends or face off against players worldwide, hone your skills with intricate puzzles,
-      and dive deep into advanced game analysis. Here at Chessland, every move is an adventure!
-    </p>
-    <h2 class="home-close-heading">Enjoy the world of chess with Chessland!</h2>
-  </div>
+  <app-navbar></app-navbar>
 
-  <app-navbar />
-  <chess-board />
+  <div class="content">
+    <div class="home-text">
+      <h1 class="home-heading">Welcome to Chessland!</h1>
+      <p class="home-paragraph">
+        Step into the timeless world of chess, where strategy meets creativity.
+        Challenge your friends or face off against players worldwide, hone your skills with intricate puzzles,
+        and dive deep into advanced game analysis. Here at Chessland, every move is an adventure!
+      </p>
+      <h2 class="home-close-heading">Enjoy the world of chess with Chessland!</h2>
+    </div>
+
+    <div class="chess-board-container">
+      <chess-board [chessBoardSize]="chessBoardSize"></chess-board>
+    </div>
+  </div>
 </div>
