@@ -1,1 +1,11 @@
-<div id="chess-board" [style.width.px]="chessBoardSize()" [style.height.px]="chessBoardSize()"></div>
+<div class="chess-board" [style.width.px]="chessBoardSize()" [style.height.px]="chessBoardSize()">
+  <div class="board-background">
+    <img src="/assets/board/wood4.jpg" alt="Chess Board Background">
+  </div>
+  <div class="field-container" *ngFor="let coordinate of coordinates">
+    <app-field
+      [coordinate]="coordinate"
+      [piece]="fieldMap.get(coordinate)!">
+    </app-field>
+  </div>
+</div>

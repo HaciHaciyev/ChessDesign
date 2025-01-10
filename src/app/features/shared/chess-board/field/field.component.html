@@ -1,0 +1,5 @@
+<div class="field" [class.black]="isBlack" [class.white]="!isBlack">
+  <ng-container *ngIf="piece !== null">
+    <app-piece [pieceType]="piece!.type" [color]="piece!.color"></app-piece>
+  </ng-container>
+</div>

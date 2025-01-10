@@ -1,0 +1,4 @@
+<div class="piece" [ngClass]="{'black': color === Color.Black, 'white': color === Color.White}">
+  <img *ngIf="pieceType" [src]="imagePath" alt="{{ color }}{{ pieceType }}" />
+</div>
+
