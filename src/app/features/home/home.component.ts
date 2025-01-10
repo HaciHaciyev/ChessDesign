@@ -9,5 +9,5 @@ import {ChessBoardComponent} from '../shared/chess-board/chess-board.component';
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
-  protected readonly chessBoardSize: number = 480;
+  protected readonly chessBoardSize: number = 420;
 }
