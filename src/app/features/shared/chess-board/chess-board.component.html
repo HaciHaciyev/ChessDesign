@@ -1,9 +1,13 @@
-<div class="chess-board-wrapper" [style.width.px]="chessBoardSize() + 40" [style.height.px]="chessBoardSize() + 40">
+<div
+  class="chess-board-wrapper"
+  [style.width.px]="chessBoardSize()"
+  [style.height.px]="chessBoardSize()"
+  [class.flipped]="isBlack()">
   <div class="notation-top">
-    <div class="notation" *ngFor="let letter of ['A','B','C','D','E','F','G','H']">{{ letter }}</div>
+    <div class="notation" *ngFor="let letter of notationLetters">{{ letter }}</div>
   </div>
   <div class="notation-left">
-    <div class="notation" *ngFor="let number of [8,7,6,5,4,3,2,1]">{{ number }}</div>
+    <div class="notation" *ngFor="let number of notationNumbers">{{ number }}</div>
   </div>
 
   <div class="chess-board">

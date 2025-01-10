@@ -14,11 +14,20 @@ import {FieldComponent, OptionalPiece} from './field/field.component';
 })
 export class ChessBoardComponent implements OnInit {
   fen: InputSignal<string> = input(DEFAULT_FEN);
+  isBlack: InputSignal<boolean> = input(false);
   chessBoardSize: InputSignal<number> = input(280);
   isChessGameActive: InputSignal<boolean> = input(false);
 
   protected coordinates: Coordinate[] = [];
   protected readonly fieldMap: Map<Coordinate, OptionalPiece> = new Map();
+
+  get notationLetters(): string[] {
+    return this.isBlack() ? ['H', 'G', 'F', 'E', 'D', 'C', 'B', 'A'] : ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+  }
+
+  get notationNumbers(): number[] {
+    return this.isBlack() ? [1, 2, 3, 4, 5, 6, 7, 8] : [8, 7, 6, 5, 4, 3, 2, 1];
+  }
 
   ngOnInit(): void {
     this.initializeChessBoard(this.fen());

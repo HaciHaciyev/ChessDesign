@@ -5,6 +5,27 @@
   align-items: center;
   justify-content: center;
   border-radius: 20px;
+
+  &.flipped {
+    transform: rotate(180deg);
+
+    .chess-board {
+      flex-direction: row-reverse;
+    }
+
+    .notation-top {
+      transform: rotate(180deg);
+    }
+
+    .notation-left {
+      transform: rotate(180deg);
+      left: -25px;
+    }
+
+    .field-container {
+      transform: rotate(180deg);
+    }
+  }
 }
 
 .notation-top {
