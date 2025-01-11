@@ -21,10 +21,13 @@ $main-font: "Georgia", serif;
 }
 
 .home-text {
+  position: fixed;
+  top: 140px;
   width: 40%;
   text-align: left;
   margin-left: 5%;
   color: #d4c4bc;
+  padding: 15px;
 }
 
 * {
