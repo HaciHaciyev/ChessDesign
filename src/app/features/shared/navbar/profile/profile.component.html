@@ -19,7 +19,7 @@
   >
     <ul>
       <li>
-        <p class="username">Username: {{userProperties?.username}}</p>
+        <p class="username">{{userProperties?.username}}</p>
       </li>
       <li>
         <p class="email">{{userProperties?.email}}</p>
@@ -39,10 +39,10 @@
         </button>
       </li>
       <li>
-        <a [routerLink]="['/settings']">Settings</a>
+        <a class="settings" [routerLink]="['/settings']">Settings</a>
       </li>
       <li>
-        <a (click)="handleLogout()" (keydown)="handleKeyDown($event, 'logout')">Logout</a>
+        <a class="logout" (click)="handleLogout()" (keydown)="handleKeyDown($event, 'logout')">Logout</a>
       </li>
     </ul>
   </div>

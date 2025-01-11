@@ -28,33 +28,40 @@
 
 .dropdown-page {
   position: absolute;
-  font-family: "Andale Mono", serif;
+  font-family: "Liberation Serif", serif;
   top: 55px;
   right: 0;
-  background: linear-gradient(135deg, #7d5544, #463433);
+  background: linear-gradient(135deg, #2e1c17, #463433);
   color: #f5f5f5;
-  width: 180px;
-  border-radius: 8px;
-  box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.5);
+  width: 240px;
+  border-radius: 12px;
+  box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.6);
   z-index: 10;
-  padding: 10px 0;
-  animation: fadeIn 0.5s ease forwards;
+  padding: 12px;
+  animation: fadeIn 0.4s ease forwards;
 
   ul {
     list-style: none;
     padding: 0;
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
   }
 
   ul li {
-    padding: 12px 16px;
-    cursor: pointer;
-    text-align: center;
+    padding: 8px 0;
+    text-align: left;
     transition: background-color 0.2s ease, transform 0.1s ease;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  ul li:last-child {
+    border-bottom: none;
   }
 
   ul li:hover {
-    background-color: #7d5544;
+    background-color: rgba(255, 255, 255, 0.05);
   }
 
   ul li a {
@@ -63,35 +70,56 @@
     display: block;
   }
 
-  .username {
-
-  }
-
-  .email {
-
-  }
-
+  .username,
+  .email,
   .rating {
-
+    font-size: 14px;
+    line-height: 1.2;
+    margin: 0;
+    padding: 0;
   }
 
   .icon-button {
+    font-family: "Liberation Serif", serif;
     background: transparent;
     border: none;
     color: #f5f5f5;
-    font-size: 16px;
+    font-size: 14px;
     display: flex;
     align-items: center;
-    gap: 8px;
     cursor: pointer;
+    transition: color 0.2s ease, transform 0.1s ease;
+    gap: 8px;
+    padding: 0;
+    line-height: 1;
   }
 
-  .icon-pencil::before {
+  .icon-pencil::after,
+  .icon-trash::after {
     content: '\270E';
+    font-size: inherit;
+    line-height: inherit;
+    vertical-align: middle;
   }
 
-  .icon-trash::before {
+  .icon-trash::after {
     content: '\1F5D1';
+    height: 8px;
+  }
+
+
+  .settings {
+    font-size: 14px;
+    padding: 0;
+  }
+
+  .logout {
+    font-size: 14px;
+    padding: 0;
+  }
+
+  .logout:hover {
+    cursor: pointer;
   }
 }
 
