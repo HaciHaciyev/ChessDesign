@@ -2,6 +2,7 @@ import {Component, input, InputSignal, OnInit} from '@angular/core';
 import {Color, Coordinate, CoordinateUtils, DEFAULT_FEN, PieceType} from './chess-types';
 import {NgForOf} from '@angular/common';
 import {FieldComponent, OptionalPiece} from './field/field.component';
+import {StorageService} from '../service/StorageService';
 
 @Component({
   selector: 'chess-board',
@@ -19,7 +20,12 @@ export class ChessBoardComponent implements OnInit {
   isChessGameActive: InputSignal<boolean> = input(false);
 
   protected coordinates: Coordinate[] = [];
+  protected readonly boardImagePath: string;
   protected readonly fieldMap: Map<Coordinate, OptionalPiece> = new Map();
+
+  constructor(private storage: StorageService) {
+    this.boardImagePath = `/assets/board/${this.storage.getBoard()}`;
+  }
 
   get notationLetters(): string[] {
     return this.isBlack() ? ['H', 'G', 'F', 'E', 'D', 'C', 'B', 'A'] : ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];

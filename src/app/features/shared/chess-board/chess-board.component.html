@@ -12,7 +12,7 @@
 
   <div class="chess-board">
     <div class="board-background">
-      <img src="/assets/board/wood4.jpg" alt="Chess Board Background">
+      <img [src]="boardImagePath" alt="Chess Board Background">
     </div>
     <div class="field-container" *ngFor="let coordinate of coordinates">
       <app-field
