@@ -4,6 +4,8 @@ import {NgIf} from '@angular/common';
 import {Router, RouterLink} from '@angular/router';
 import {StorageService, StorageType} from '../../service/StorageService';
 import {debounceTime, Subject} from 'rxjs';
+import {UserProperties} from './IUserProperties';
+import {UserPropertiesService} from './service/UserPropertiesService';
 
 @Component({
   selector: 'profile',
@@ -12,19 +14,23 @@ import {debounceTime, Subject} from 'rxjs';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit, OnDestroy {
-  profilePictureBase64: string | null = null;
-  private closeSubject: Subject<void> = new Subject<void>();
-  private hoverSubject: Subject<void> = new Subject<void>();
-  private isInsideDropdown: WritableSignal<boolean> = signal<boolean>(false);
   isDropdownPage: WritableSignal<boolean> = signal<boolean>(false);
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
   isFileInputActive: WritableSignal<boolean> = signal<boolean>(false);
 
-  constructor(private service: ProfilePictureService,
+  protected profilePictureBase64: string | null = null;
+  protected userProperties: UserProperties | null = null;
+  private closeSubject: Subject<void> = new Subject<void>();
+  private hoverSubject: Subject<void> = new Subject<void>();
+  private isInsideDropdown: WritableSignal<boolean> = signal<boolean>(false);
+
+  constructor(private userService: UserPropertiesService,
+              private pictureService: ProfilePictureService,
               private storage: StorageService,
               private router: Router) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.loadUserProperties();
     this.loadProfilePicture();
 
     this.closeSubject.pipe(debounceTime(700)).subscribe(() => {
@@ -50,22 +56,35 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.hoverSubject.unsubscribe();
   }
 
+  private loadUserProperties(): void {
+    this.userService
+      .getUserProperties()
+      .subscribe({
+        next: (userProperties: UserProperties): void => {
+          this.userProperties = userProperties;
+        },
+        error: (): void => {
+          console.error("Error loading user properties");
+        }
+      })
+  }
+
   private loadProfilePicture(): void {
-    this.service
+    this.pictureService
       .getProfilePicture()
       .subscribe({
-        next: (profilePictureUrl: string) => {
+        next: (profilePictureUrl: string): void => {
           this.profilePictureBase64 = profilePictureUrl;
         },
-        error: () => {
-          console.error(`Error when attempting to load profile picture.`);
+        error: (): void => {
+          console.error("Error when attempting to load profile picture.");
         }
     });
   }
 
   deleteProfilePicture(): void {
     console.log("Trying to delete profile picture.")
-    this.service.deleteProfilePicture();
+    this.pictureService.deleteProfilePicture();
   }
 
   onFileInputClick(): void {
@@ -82,7 +101,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     const file: File | undefined = (event.target as HTMLInputElement).files?.[0];
 
     if (file) {
-      this.service.uploadProfilePicture(file).subscribe({
+      this.pictureService.uploadProfilePicture(file).subscribe({
         next: (success: boolean): void => {
           if (success) {
             console.log("Image uploaded successfully!");
