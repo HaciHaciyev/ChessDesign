@@ -1,15 +1,16 @@
 import {Component, ElementRef, OnDestroy, OnInit, signal, ViewChild, WritableSignal} from '@angular/core';
 import {ProfilePictureService} from './service/ProfilePictureService';
 import {NgIf} from '@angular/common';
-import {Router, RouterLink} from '@angular/router';
+import {Router} from '@angular/router';
 import {StorageService, StorageType} from '../../service/StorageService';
 import {debounceTime, Subject} from 'rxjs';
 import {UserProperties} from './IUserProperties';
-import {UserPropertiesService} from './service/UserPropertiesService';
+import {UserPropertiesService} from '../../service/UserPropertiesService';
+import {SettingsComponent} from './settings/settings.component';
 
 @Component({
   selector: 'profile',
-  imports: [NgIf, RouterLink],
+  imports: [NgIf, SettingsComponent],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
@@ -18,6 +19,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
   isFileInputActive: WritableSignal<boolean> = signal<boolean>(false);
 
+  protected isSettingsDisplayed: boolean = false;
   protected profilePictureBase64: string | null = null;
   protected userProperties: UserProperties | null = null;
   private closeSubject: Subject<void> = new Subject<void>();

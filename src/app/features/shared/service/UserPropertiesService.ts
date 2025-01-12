@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {UserProperties} from '../IUserProperties';
+import {UserProperties} from '../navbar/profile/IUserProperties';
 
 @Injectable({
   providedIn: 'root'

@@ -107,10 +107,15 @@
     height: 8px;
   }
 
-
   .settings {
-    font-size: 14px;
+    background-color: transparent;
+    border: none;
+    color: inherit;
+    cursor: pointer;
     padding: 0;
+    text-align: left;
+    font-size: 14px;
+    font-family: "Liberation Serif", serif;
   }
 
   .logout {
@@ -121,6 +126,12 @@
   .logout:hover {
     cursor: pointer;
   }
+}
+
+.settings-wrapper {
+  position: absolute;
+  top: 300%;
+  left: -1835%;
 }
 
 @keyframes fadeIn {

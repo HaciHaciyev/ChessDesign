@@ -39,11 +39,17 @@
         </button>
       </li>
       <li>
-        <a class="settings" [routerLink]="['/settings']">Settings</a>
+        <button class="settings" (click)="isSettingsDisplayed = !isSettingsDisplayed">
+          Settings
+        </button>
       </li>
       <li>
         <a class="logout" (click)="handleLogout()" (keydown)="handleKeyDown($event, 'logout')">Logout</a>
       </li>
     </ul>
+  </div>
+
+  <div class="settings-wrapper" *ngIf="isSettingsDisplayed" (mouseenter)="isDropdownPage.set(false)">
+    <app-settings></app-settings>
   </div>
 </div>
