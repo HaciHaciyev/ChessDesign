@@ -33,29 +33,36 @@
   position: absolute;
   display: flex;
   justify-content: space-between;
-  width: calc(100% - 50px);
-  top: -30px;
+  width: 100%;
+  top: -3%;
+  transform: translateY(-50%);
 
   .notation {
     font-size: 18px;
+    width: calc(100% / 8);
+    text-align: center;
   }
 }
 
 .notation-left {
   color: #e3c3a5;
   position: absolute;
-  top: 20px;
-  left: -15px;
-  height: calc(100% - 40px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  height: 100%;
+  left: -3%;
+  transform: translateX(-50%);
 
   .notation {
     font-size: 16px;
-    transform: translateX(-8px);
+    height: calc(100% / 8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
+
 
 .chess-board {
   width: 100%;

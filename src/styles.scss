@@ -1,3 +1,9 @@
+$primary-font: "Georgia", Serif, serif;
+$primary-color: #f5e0c3;
+$shadow-color: rgba(0, 0, 0, 0.7);
+$font-size-large: 24px;
+$font-size-medium: 18px;
+
 html, body {
   margin: 0;
   padding: 0;
@@ -17,31 +23,31 @@ html, body {
   align-items: center;
 
   .chessland {
-    font-family: "Georgia", Serif, serif;
-    color: #f5e0c3;
+    font-family: $primary-font;
+    color: $primary-color;
     cursor: pointer;
     position: fixed;
-    top: 15px;
-    left: 20px;
-    font-size: 24px;
+    top: 1rem;
+    left: 1.25rem;
+    font-size: $font-size-large;
     text-align: left;
-    text-shadow: 7px 7px 12px rgba(0, 0, 0, 0.7);
+    text-shadow: 0.5rem 0.5rem 0.75rem $shadow-color;
     text-decoration: none;
     display: flex;
   }
 
   .navbar {
-    font-family: "Georgia", Serif, serif;
-    font-size: 18px;
-    color: #f5e0c3;
+    font-family: $primary-font;
+    font-size: $font-size-medium;
+    color: $primary-color;
     cursor: pointer;
-    padding: 20px;
+    padding: 1.25rem;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 1;
-    text-shadow: 3px 3px 7px rgba(0, 0, 0, 0.7);
+    text-shadow: 0.25rem 0.25rem 0.5rem $shadow-color;
 
     nav {
       ul {
@@ -52,7 +58,7 @@ html, body {
         padding: 0;
 
         li {
-          margin: 0 10px;
+          margin: 0 0.625rem;
 
           a {
             color: inherit;
@@ -64,6 +70,40 @@ html, body {
   }
 
   .entrance-b:hover {
-    color: lightgray;
+    color-adjust: $primary-color, 20%;
+  }
+}
+
+@media (max-width: 768px) {
+  .overview .chessland {
+    font-size: 1.5rem;
+    top: 0.5rem;
+    left: 1rem;
+  }
+
+  .overview .navbar {
+    font-size: 1rem;
+    padding: 1rem;
+
+    nav ul li {
+      margin: 0 0.5rem;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .overview .chessland {
+    font-size: 1.25rem;
+    top: 0.5rem;
+    left: 0.75rem;
+  }
+
+  .overview .navbar {
+    font-size: 0.875rem;
+    padding: 0.75rem;
+
+    nav ul li {
+      margin: 0 0.25rem;
+    }
   }
 }

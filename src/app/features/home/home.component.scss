@@ -74,3 +74,128 @@ body {
   left: 935px;
   top: 175px;
 }
+
+@media screen and (max-width: 1200px) {
+  .home-text {
+    width: 50%;
+    top: 100px;
+    margin-left: 10%;
+  }
+
+  .chess-board-container {
+    left: 850px;
+    top: 150px;
+  }
+
+  .home-heading {
+    font-size: 3rem;
+  }
+
+  .home-paragraph {
+    font-size: 1.4rem;
+  }
+
+  .home-close-heading {
+    font-size: 2rem;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .home-text {
+    width: 60%;
+    top: 80px;
+    margin-left: 15%;
+  }
+
+  .chess-board-container {
+    left: 700px;
+    top: 125px;
+  }
+
+  .home-heading {
+    font-size: 2.5rem;
+  }
+
+  .home-paragraph {
+    font-size: 1.3rem;
+  }
+
+  .home-close-heading {
+    font-size: 1.8rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .home-text {
+    width: 70%;
+    top: 60px;
+    margin-left: 10%;
+  }
+
+  .chess-board-container {
+    left: 500px;
+    top: 100px;
+  }
+
+  .home-heading {
+    font-size: 2rem;
+  }
+
+  .home-paragraph {
+    font-size: 1.2rem;
+  }
+
+  .home-close-heading {
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .home-text {
+    width: 80%;
+    top: 40px;
+    margin-left: 10%;
+  }
+
+  .chess-board-container {
+    left: 400px;
+    top: 50px;
+  }
+
+  .home-heading {
+    font-size: 1.8rem;
+  }
+
+  .home-paragraph {
+    font-size: 1.1rem;
+  }
+
+  .home-close-heading {
+    font-size: 1.4rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .home-text {
+    width: 90%;
+    top: 30px;
+    margin-left: 5%;
+  }
+
+  .chess-board-container {
+    left: 300px;
+    top: 30px;
+  }
+
+  .home-heading {
+    font-size: 1.6rem;
+  }
+
+  .home-paragraph {
+    font-size: 1rem;
+  }
+
+  .home-close-heading {
+    font-size: 1.3rem;
+  }
+}
