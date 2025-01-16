@@ -1,3 +1,4 @@
+@use "../../../styles.scss" as global;
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
 
 * {
@@ -6,16 +7,17 @@
 
 .chessland {
   font-family: "Georgia", Serif, serif;
-  color: #f5e0c3;
+  color: global.$main-text-color;
   cursor: pointer;
   position: fixed;
-  top: 15px;
-  left: 20px;
-  font-size: 24px;
+  top: 1rem;
+  left: 1.5rem;
+  font-size: 1.5rem;
   text-align: left;
-  text-shadow: 7px 7px 12px rgba(0, 0, 0, 0.7);
+  text-shadow: global.$shadow-light;
   text-decoration: none;
   display: flex;
+  align-items: center;
 }
 
 .message {

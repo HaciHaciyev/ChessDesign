@@ -1,3 +1,98 @@
-.profile-picture-container {
-  z-index: 55;
+@use "../../../../styles.scss" as global;
+
+.overview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+
+  .chessland {
+    font-family: "Georgia", Serif, serif;
+    color: global.$main-text-color;
+    cursor: pointer;
+    position: fixed;
+    top: 1rem;
+    left: 1.5rem;
+    font-size: 1.5rem;
+    text-align: left;
+    text-shadow: global.$shadow-light;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+  }
+
+  .navbar {
+    font-family: "Georgia", Serif, serif;
+    font-size: 1.125rem;
+    color: global.$main-text-color;
+    cursor: pointer;
+    padding: 1.25rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+    text-shadow: 0.3rem 0.3rem 0.7rem  rgba(2, 0, 0, 0.7);
+
+    .menu-toggle {
+      display: none;
+      font-size: 1rem;
+      cursor: pointer;
+      position: fixed;
+      top: 1rem;
+      right: 2rem;
+      z-index: 22;
+      transition: transform 0.3s ease;
+      box-shadow: global.$shadow-soft;
+    }
+
+    nav {
+      ul {
+        display: flex;
+        justify-content: center;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+          margin: 0 1rem;
+
+          a {
+            color: inherit;
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
+
+  .profile-picture-container {
+    position: fixed;
+    top: 0.6rem;
+    right: 0.8rem;
+    z-index: 99;
+  }
+
+  @media screen and (max-width: 809px) {
+    .navbar .menu {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+
+    .menu-toggle {
+      display: block;
+    }
+
+    .navbar .menu.show {
+      display: flex;
+    }
+
+    .navbar nav ul {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
 }

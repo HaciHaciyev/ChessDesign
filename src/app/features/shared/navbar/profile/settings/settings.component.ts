@@ -2,11 +2,9 @@ import { Component } from '@angular/core';
 import {Board, Pieces, StorageService} from '../../../service/StorageService';
 import {UserProperties} from '../IUserProperties';
 import {UserPropertiesService} from '../../../service/UserPropertiesService';
-import {NgForOf, NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-settings',
-  imports: [NgIf, NgForOf],
   templateUrl: './settings.component.html',
   styleUrl: './settings.component.scss'
 })

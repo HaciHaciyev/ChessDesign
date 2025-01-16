@@ -1,20 +1,24 @@
 <div class="overview">
-  <a [routerLink]='["/home"]' class="chessland">Chessland</a>
+  <a [routerLink]="['/home']" class="chessland">Chessland</a>
 
   <header class="navbar">
-    <nav>
+    <div class="menu-toggle" (click)="toggleMenu()">
+      <span class="arrow">></span>
+    </div>
+
+    <nav class="menu" [ngClass]="{'show': isMenuOpen}">
       <ul>
-        <li><a [routerLink]='["/chess"]'>Chess</a></li>
-        <li><a [routerLink]='["/puzzles"]'>Puzzles</a></li>
-        <li><a [routerLink]='["/translations"]'>Watch</a></li>
-        <li><a [routerLink]='["/messages"]'>Messages</a></li>
-        <li><a [routerLink]='["/tools"]'>Tools</a></li>
-        <li><a [routerLink]='["/history"]'>History</a></li>
+        <li><a [routerLink]="['/chess']">Chess</a></li>
+        <li><a [routerLink]="['/puzzles']">Puzzles</a></li>
+        <li><a [routerLink]="['/translations']">Watch</a></li>
+        <li><a [routerLink]="['/messages']">Messages</a></li>
+        <li><a [routerLink]="['/tools']">Tools</a></li>
+        <li><a [routerLink]="['/history']">History</a></li>
       </ul>
     </nav>
   </header>
 
   <div class="profile-picture-container">
-    <profile />
+    <profile></profile>
   </div>
 </div>
