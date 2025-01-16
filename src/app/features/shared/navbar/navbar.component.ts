@@ -1,14 +1,15 @@
-import { Component } from '@angular/core';
+import {Component, HostListener} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {ProfileComponent} from './profile/profile.component';
-import {NgClass} from '@angular/common';
+import {NgClass, NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
   imports: [
     RouterLink,
     ProfileComponent,
-    NgClass
+    NgClass,
+    NgIf
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'

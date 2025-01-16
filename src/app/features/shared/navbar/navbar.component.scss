@@ -22,6 +22,18 @@
     align-items: center;
   }
 
+  .menu-toggle {
+    display: block;
+    font-size: 1rem;
+    cursor: pointer;
+    position: fixed;
+    top: 1.3rem;
+    left: 8.5rem;
+    z-index: 22;
+    transition: transform 0.3s ease;
+    box-shadow: global.$shadow-soft;
+  }
+
   .navbar {
     font-family: "Georgia", Serif, serif;
     font-size: 1.125rem;
@@ -34,18 +46,6 @@
     width: 100%;
     z-index: 1;
     text-shadow: 0.3rem 0.3rem 0.7rem  rgba(2, 0, 0, 0.7);
-
-    .menu-toggle {
-      display: none;
-      font-size: 1rem;
-      cursor: pointer;
-      position: fixed;
-      top: 1rem;
-      right: 2rem;
-      z-index: 22;
-      transition: transform 0.3s ease;
-      box-shadow: global.$shadow-soft;
-    }
 
     nav {
       ul {
@@ -77,17 +77,13 @@
   @media screen and (max-width: 809px) {
     .navbar .menu {
       display: none;
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
-    }
-
-    .menu-toggle {
-      display: block;
     }
 
     .navbar .menu.show {
       display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
     }
 
     .navbar nav ul {
