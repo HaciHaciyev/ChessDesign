@@ -2,7 +2,11 @@
   <a [routerLink]="['/home']" class="chessland">Chessland</a>
 
   <header class="navbar">
-    <div class="menu-toggle" (click)="toggleMenu()" *ngIf="isMenuToggleVisible">
+    <div class="menu-toggle"
+         (click)="toggleMenu()"
+         [ngClass]="{'active': isMenuOpen}"
+         *ngIf="isMenuToggleVisible"
+    >
       <span class="arrow"></span>
     </div>
 

@@ -171,12 +171,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
       return;
     }
 
-    setTimeout((): void => {
-      if (!this.isTouchActive()) {
-        this.isInsideDropdown.set(false);
-        this.closeSubject.next();
-      }
-    }, 300);
+    this.isInsideDropdown.set(false)
+    this.closeSubject.next();
   }
 
   onProfileClick(): void {
