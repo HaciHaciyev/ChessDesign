@@ -151,3 +151,10 @@
 .input-picture {
   display: none;
 }
+
+@media screen and (max-width: 749px) {
+  .profile-picture {
+    width: 2.4rem;
+    height: 2.4rem;
+  }
+}

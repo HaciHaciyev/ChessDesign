@@ -24,22 +24,15 @@
 
   .menu-toggle {
     display: block;
+    position: fixed;
+    top: 0.55rem;
+    left: 8.5rem;
     background: none;
     border: none;
-    font-size: 24px;
+    font-size: 1.8rem;
     cursor: pointer;
-    color: #333;
-    position: fixed; // Фиксированное позиционирование
-    top: 1.3rem;
-    left: 8.5rem;
     z-index: 22;
-    transition: transform 0.3s ease, color 0.3s ease; // Плавные переходы
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-
-    &:hover {
-      transform: rotate(90deg); // Поворот при наведении
-      color: #0078ff; // Смена цвета при наведении
-    }
+    transition: transform 0.3s ease, color 0.3s ease;
   }
 
   .navbar {
@@ -83,6 +76,11 @@
   }
 
   @media screen and (max-width: 749px) {
+    .profile-picture-container {
+      position: fixed;
+      top: 0.55rem;
+    }
+
     .navbar .menu {
       display: none;
     }

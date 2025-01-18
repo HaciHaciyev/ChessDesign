@@ -19,7 +19,7 @@ export class NavbarComponent {
   protected isMenuToggleVisible: boolean = false;
 
   @HostListener('window:resize', ['$event'])
-  onResize(event: Event): void {
+  onResize(): void {
     this.isMenuToggleVisible = window.innerWidth <= 749;
   }
 
