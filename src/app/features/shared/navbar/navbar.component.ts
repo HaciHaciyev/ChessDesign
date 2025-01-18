@@ -20,11 +20,11 @@ export class NavbarComponent {
 
   @HostListener('window:resize', ['$event'])
   onResize(event: Event): void {
-    this.isMenuToggleVisible = window.innerWidth <= 809;
+    this.isMenuToggleVisible = window.innerWidth <= 749;
   }
 
   ngOnInit(): void {
-    this.isMenuToggleVisible = window.innerWidth <= 809;
+    this.isMenuToggleVisible = window.innerWidth <= 749;
   }
 
   toggleMenu(): void  {

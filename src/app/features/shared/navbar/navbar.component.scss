@@ -24,14 +24,22 @@
 
   .menu-toggle {
     display: block;
-    font-size: 1rem;
+    background: none;
+    border: none;
+    font-size: 24px;
     cursor: pointer;
-    position: fixed;
+    color: #333;
+    position: fixed; // Фиксированное позиционирование
     top: 1.3rem;
     left: 8.5rem;
     z-index: 22;
-    transition: transform 0.3s ease;
-    box-shadow: global.$shadow-soft;
+    transition: transform 0.3s ease, color 0.3s ease; // Плавные переходы
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    &:hover {
+      transform: rotate(90deg); // Поворот при наведении
+      color: #0078ff; // Смена цвета при наведении
+    }
   }
 
   .navbar {
@@ -74,7 +82,7 @@
     z-index: 99;
   }
 
-  @media screen and (max-width: 809px) {
+  @media screen and (max-width: 749px) {
     .navbar .menu {
       display: none;
     }
