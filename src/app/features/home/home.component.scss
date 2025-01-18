@@ -4,6 +4,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Love+Ya+Like+A+Sister&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Satisfy&display=swap");
 
 $home-background: linear-gradient(90deg, #5c4033 50%, #000000 50%) fixed;
+$home-background-phone-screen: linear-gradient(114deg, #5c4033 50%, #000000 50%) fixed;
 $radial-gradient: radial-gradient(#480d35, #17151d);
 $main-font: "Georgia", serif;
 
@@ -73,4 +74,10 @@ body {
   position: fixed;
   left: 935px;
   top: 175px;
+}
+
+@media screen and (max-width: 749px) {
+  .home {
+    background: $home-background-phone-screen;
+  }
 }
