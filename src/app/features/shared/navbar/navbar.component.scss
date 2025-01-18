@@ -8,7 +8,7 @@
   width: 100%;
 
   .chessland {
-    font-family: "Georgia", Serif, serif;
+    font-family: global.$chessland-logo-font;
     color: global.$main-text-color;
     cursor: pointer;
     position: fixed;

@@ -15,16 +15,21 @@ import {SettingsComponent} from './settings/settings.component';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit, OnDestroy {
-  isDropdownPage: WritableSignal<boolean> = signal<boolean>(false);
-  @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
-  isFileInputActive: WritableSignal<boolean> = signal<boolean>(false);
+  protected isTouchDevice: WritableSignal<boolean> = signal<boolean>(false);
 
-  protected isSettingsDisplayed: boolean = false;
-  protected profilePictureBase64: string | null = null;
-  protected userProperties: UserProperties | null = null;
+  protected isDropdownPage: WritableSignal<boolean> = signal<boolean>(false);
+  private isInsideDropdown: WritableSignal<boolean> = signal<boolean>(false);
+  private isTouchActive: WritableSignal<boolean> = signal<boolean>(false);
   private closeSubject: Subject<void> = new Subject<void>();
   private hoverSubject: Subject<void> = new Subject<void>();
-  private isInsideDropdown: WritableSignal<boolean> = signal<boolean>(false);
+
+  @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
+  private isFileInputActive: WritableSignal<boolean> = signal<boolean>(false);
+
+  protected isSettingsDisplayed: WritableSignal<boolean> = signal<boolean>(false);
+
+  protected profilePictureBase64: string | null = null;
+  protected userProperties: UserProperties | null = null;
 
   constructor(private userService: UserPropertiesService,
               private pictureService: ProfilePictureService,
@@ -35,14 +40,17 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.loadUserProperties();
     this.loadProfilePicture();
 
-    this.closeSubject.pipe(debounceTime(700)).subscribe(() => {
+    this.isTouchDevice.set('ontouchstart' in window || navigator.maxTouchPoints > 0);
+    console.log(`Is touch device: ${this.isTouchDevice()}`);
+
+    this.closeSubject.pipe(debounceTime(700)).subscribe((): void => {
       if (this.isInsideDropdown() || this.isFileInputActive()) {
         return;
       }
       this.isDropdownPage.set(false);
     });
 
-    this.hoverSubject.subscribe(() => {
+    this.hoverSubject.subscribe((): void => {
       if (this.closeSubject) {
         this.closeSubject.next();
       }
@@ -121,10 +129,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
     console.error("No file selected.");
   }
 
-  toggleDropdown(): void {
-    this.isDropdownPage.set(!this.isDropdownPage());
-  }
-
   handleLogout(): void {
     this.storage.remove(StorageType.JWT_TOKEN);
     this.storage.remove(StorageType.REFRESH_TOKEN);
@@ -133,34 +137,66 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.isDropdownPage.set(false);
   }
 
-  handleKeyDown(event: KeyboardEvent, action?: string): void {
-    if (event.key === 'Enter' || event.key === ' ') {
-      event.preventDefault();
-
-      if (action === 'logout') {
-        this.handleLogout();
-        return;
-      }
-
-      this.toggleDropdown();
-    }
+  toggleSettings(): void {
+    this.isSettingsDisplayed.set(!this.isSettingsDisplayed);
   }
 
   onMouseEnter(): void {
+    if (this.isTouchDevice() || this.isTouchActive()) {
+      return;
+    }
+
     this.isDropdownPage.set(true);
   }
 
   onMouseLeave(): void {
+    if (this.isTouchDevice() || this.isTouchActive()) {
+      return;
+    }
+
     this.closeSubject.next();
   }
 
   onDropdownMouseEnter(): void {
+    if (this.isTouchDevice() || this.isTouchActive()) {
+      return;
+    }
+
     this.isInsideDropdown.set(true);
     this.hoverSubject.next();
   }
 
   onDropdownMouseLeave(): void {
-    this.isInsideDropdown.set(false)
-    this.closeSubject.next();
+    if (this.isTouchDevice() || this.isTouchActive()) {
+      return;
+    }
+
+    setTimeout((): void => {
+      if (!this.isTouchActive()) {
+        this.isInsideDropdown.set(false);
+        this.closeSubject.next();
+      }
+    }, 300);
+  }
+
+  onProfileClick(): void {
+    if (this.isDropdownPage()) {
+      this.onTouchEnd();
+      return;
+    }
+
+    this.isDropdownPage.set(true);
+    this.isInsideDropdown.set(true);
+    this.hoverSubject.next();
+  }
+
+  onTouchEnd(): void {
+    setTimeout((): void => {
+      this.isDropdownPage.set(false);
+      this.isInsideDropdown.set(false);
+      this.closeSubject.next();
+
+      this.isTouchActive.set(false);
+    }, 300);
   }
 }

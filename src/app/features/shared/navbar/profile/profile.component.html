@@ -1,21 +1,18 @@
 <div
   class="profile-picture-container"
-  (mouseenter)="onMouseEnter()"
-  (mouseleave)="onMouseLeave()">
-
-  <button
-    class="profile-picture-button"
-    (keydown)="handleKeyDown($event)"
-    aria-haspopup="true"
-    [attr.aria-expanded]="isDropdownPage()"
+  (mouseenter)="!isTouchDevice() && onMouseEnter()"
+  (mouseleave)="!isTouchDevice() && onMouseLeave()"
+  (click)="isTouchDevice() && onProfileClick()"
   >
+
+  <button class="profile-picture-button">
     <img class="profile-picture" [src]="profilePictureBase64!" alt="User Profile Picture"/>
   </button>
 
   <div class="dropdown-page"
        *ngIf="isDropdownPage()"
-       (mouseenter)="onDropdownMouseEnter()"
-       (mouseleave)="onDropdownMouseLeave()"
+       (mouseenter)="!isTouchDevice() && onDropdownMouseEnter()"
+       (mouseleave)="!isTouchDevice() && onDropdownMouseLeave()"
   >
     <ul>
       <li>
@@ -39,17 +36,17 @@
         </button>
       </li>
       <li>
-        <button class="settings" (click)="isSettingsDisplayed = !isSettingsDisplayed">
+        <button class="settings" (click)="toggleSettings()">
           Settings
         </button>
       </li>
       <li>
-        <a class="logout" (click)="handleLogout()" (keydown)="handleKeyDown($event, 'logout')">Logout</a>
+        <a class="logout" (click)="handleLogout()">Logout</a>
       </li>
     </ul>
   </div>
 
-  <div class="settings-wrapper" *ngIf="isSettingsDisplayed" (mouseenter)="isDropdownPage.set(false)">
+  <div class="settings-wrapper" *ngIf="isSettingsDisplayed()">
     <app-settings></app-settings>
   </div>
 </div>
