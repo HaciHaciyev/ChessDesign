@@ -15,9 +15,9 @@ import {SettingsComponent} from './settings/settings.component';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit, OnDestroy {
-  @ViewChild('fileInput', {static: false}) fileInput!: ElementRef<HTMLInputElement>;
+  @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
 
-  protected isFileInputActive: WritableSignal<boolean> = signal<boolean>(false);
+  private isFileInputActive: WritableSignal<boolean> = signal<boolean>(false);
   protected isTouchDevice: WritableSignal<boolean> = signal<boolean>(false);
   protected isDropdownPage: WritableSignal<boolean> = signal<boolean>(false);
   private isInsideDropdown: WritableSignal<boolean> = signal<boolean>(false);
@@ -101,8 +101,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
     this.isFileInputActive.set(true);
     this.fileInput.nativeElement.click();
-
-    console.log("File input click opened.")
   }
 
   onFileSelected(event: Event): void {
