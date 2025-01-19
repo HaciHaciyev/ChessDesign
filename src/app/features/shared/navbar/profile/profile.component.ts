@@ -15,18 +15,17 @@ import {SettingsComponent} from './settings/settings.component';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit, OnDestroy {
-  protected isTouchDevice: WritableSignal<boolean> = signal<boolean>(false);
+  @ViewChild('fileInput', {static: false}) fileInput!: ElementRef<HTMLInputElement>;
 
+  protected isFileInputActive: WritableSignal<boolean> = signal<boolean>(false);
+  protected isTouchDevice: WritableSignal<boolean> = signal<boolean>(false);
   protected isDropdownPage: WritableSignal<boolean> = signal<boolean>(false);
   private isInsideDropdown: WritableSignal<boolean> = signal<boolean>(false);
   private isTouchActive: WritableSignal<boolean> = signal<boolean>(false);
+  protected isSettingsDisplayed: WritableSignal<boolean> = signal<boolean>(false);
+
   private closeSubject: Subject<void> = new Subject<void>();
   private hoverSubject: Subject<void> = new Subject<void>();
-
-  @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
-  private isFileInputActive: WritableSignal<boolean> = signal<boolean>(false);
-
-  protected isSettingsDisplayed: WritableSignal<boolean> = signal<boolean>(false);
 
   protected profilePictureBase64: string | null = null;
   protected userProperties: UserProperties | null = null;
@@ -99,15 +98,18 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   onFileInputClick(): void {
     console.log("On file input click.")
+
     this.isFileInputActive.set(true);
     this.fileInput.nativeElement.click();
+
+    console.log("File input click opened.")
   }
 
   onFileSelected(event: Event): void {
+    console.log("On file selected.")
     event.stopPropagation();
     this.isFileInputActive.set(false);
 
-    console.log("On file selected.")
     const file: File | undefined = (event.target as HTMLInputElement).files?.[0];
 
     if (file) {

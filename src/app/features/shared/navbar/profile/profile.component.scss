@@ -150,6 +150,9 @@
 
 .input-picture {
   display: none;
+  /** opacity: 0;
+  position: absolute;
+  z-index: -1;*/
 }
 
 @media screen and (max-width: 749px) {
