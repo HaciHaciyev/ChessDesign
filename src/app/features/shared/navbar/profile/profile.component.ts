@@ -7,6 +7,7 @@ import {debounceTime, Subject} from 'rxjs';
 import {UserProperties} from './IUserProperties';
 import {UserPropertiesService} from '../../service/UserPropertiesService';
 import {SettingsComponent} from './settings/settings.component';
+import {DeviceService} from '../../service/DeviceService';
 
 @Component({
   selector: 'profile',
@@ -17,32 +18,33 @@ import {SettingsComponent} from './settings/settings.component';
 export class ProfileComponent implements OnInit, OnDestroy {
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
 
+  private readonly isTouchDevice: boolean;
+  private readonly debounceTime: number;
+  protected profilePictureBase64: string | null = null;
+  protected userProperties: UserProperties | null = null;
+
   private isFileInputActive: WritableSignal<boolean> = signal<boolean>(false);
-  protected isTouchDevice: WritableSignal<boolean> = signal<boolean>(false);
   protected isDropdownPage: WritableSignal<boolean> = signal<boolean>(false);
   private isInsideDropdown: WritableSignal<boolean> = signal<boolean>(false);
-  private isTouchActive: WritableSignal<boolean> = signal<boolean>(false);
   protected isSettingsDisplayed: WritableSignal<boolean> = signal<boolean>(false);
 
   private closeSubject: Subject<void> = new Subject<void>();
   private hoverSubject: Subject<void> = new Subject<void>();
 
-  protected profilePictureBase64: string | null = null;
-  protected userProperties: UserProperties | null = null;
-
   constructor(private userService: UserPropertiesService,
               private pictureService: ProfilePictureService,
+              private deviceService: DeviceService,
               private storage: StorageService,
-              private router: Router) {}
+              private router: Router) {
+    this.isTouchDevice = this.deviceService.isTouchDevice();
+    this.debounceTime = this.isTouchDevice ? 1500 : 700;
+  }
 
   ngOnInit(): void {
     this.loadUserProperties();
     this.loadProfilePicture();
 
-    this.isTouchDevice.set('ontouchstart' in window || navigator.maxTouchPoints > 0);
-    console.log(`Is touch device: ${this.isTouchDevice()}`);
-
-    this.closeSubject.pipe(debounceTime(700)).subscribe((): void => {
+    this.closeSubject.pipe(debounceTime(this.debounceTime)).subscribe((): void => {
       if (this.isInsideDropdown() || this.isFileInputActive()) {
         return;
       }
@@ -91,16 +93,13 @@ export class ProfileComponent implements OnInit, OnDestroy {
     });
   }
 
-  deleteProfilePicture(): void {
-    console.log("Trying to delete profile picture.")
-    this.pictureService.deleteProfilePicture();
-  }
-
   onFileInputClick(): void {
     console.log("On file input click.")
 
-    this.isFileInputActive.set(true);
     this.fileInput.nativeElement.click();
+    this.isFileInputActive.set(true);
+
+    console.log("File input click opened.")
   }
 
   onFileSelected(event: Event): void {
@@ -122,11 +121,15 @@ export class ProfileComponent implements OnInit, OnDestroy {
         },
         error: (): void => console.error("An unexpected error occurred.")
       });
-
       return;
     }
 
     console.error("No file selected.");
+  }
+
+  deleteProfilePicture(): void {
+    console.log("Trying to delete profile picture.")
+    this.pictureService.deleteProfilePicture();
   }
 
   handleLogout(): void {
@@ -142,57 +145,20 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   onMouseEnter(): void {
-    if (this.isTouchDevice() || this.isTouchActive()) {
-      return;
-    }
-
     this.isDropdownPage.set(true);
   }
 
   onMouseLeave(): void {
-    if (this.isTouchDevice() || this.isTouchActive()) {
-      return;
-    }
-
     this.closeSubject.next();
   }
 
   onDropdownMouseEnter(): void {
-    if (this.isTouchDevice() || this.isTouchActive()) {
-      return;
-    }
-
     this.isInsideDropdown.set(true);
     this.hoverSubject.next();
   }
 
   onDropdownMouseLeave(): void {
-    if (this.isTouchDevice() || this.isTouchActive()) {
-      return;
-    }
-
     this.isInsideDropdown.set(false)
     this.closeSubject.next();
-  }
-
-  onProfileClick(): void {
-    if (this.isDropdownPage()) {
-      this.onTouchEnd();
-      return;
-    }
-
-    this.isDropdownPage.set(true);
-    this.isInsideDropdown.set(true);
-    this.hoverSubject.next();
-  }
-
-  onTouchEnd(): void {
-    setTimeout((): void => {
-      this.isDropdownPage.set(false);
-      this.isInsideDropdown.set(false);
-      this.closeSubject.next();
-
-      this.isTouchActive.set(false);
-    }, 300);
   }
 }

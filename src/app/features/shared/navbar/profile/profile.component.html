@@ -1,9 +1,8 @@
 <div
   class="profile-picture-container"
-  (mouseenter)="!isTouchDevice() && onMouseEnter()"
-  (mouseleave)="!isTouchDevice() && onMouseLeave()"
-  (click)="isTouchDevice() && onProfileClick()"
-  >
+  (pointerenter)="onMouseEnter()"
+  (pointerleave)="onMouseLeave()"
+>
 
   <button class="profile-picture-button">
     <img class="profile-picture" [src]="profilePictureBase64!" alt="User Profile Picture"/>
@@ -11,8 +10,8 @@
 
   <div class="dropdown-page"
        *ngIf="isDropdownPage()"
-       (mouseenter)="!isTouchDevice() && onDropdownMouseEnter()"
-       (mouseleave)="!isTouchDevice() && onDropdownMouseLeave()"
+       (pointerenter)="onDropdownMouseEnter()"
+       (pointerleave)="onDropdownMouseLeave()"
   >
     <ul>
       <li>
