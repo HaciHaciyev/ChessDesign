@@ -25,25 +25,21 @@
   .menu-toggle {
     display: block;
     position: fixed;
-    top: 0.55rem;
-    left: 8.5rem;
+    top: 0.9rem;
+    left: 0.4rem;
     background: none;
     border: none;
-    font-size: 1.8rem;
+    font-size: 1.55rem;
     cursor: pointer;
     z-index: 22;
     transition: transform 0.3s ease, color 0.3s ease;
 
-    &::before {
-      content: "🨂";
-    }
-
-    &:hover {
-      transform: rotate(90deg);
-    }
-
     &.active {
-      transform: rotate(180deg);
+      .arrow {
+        transform: scale(1.05);
+        box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2), 0 2px 10px rgba(0.1, 0.1, 0.1, 0.1);
+        transition: box-shadow 0.3s ease, transform 0.3s ease;
+      }
     }
   }
 
@@ -88,25 +84,71 @@
   }
 
   @media screen and (max-width: 749px) {
+    .chessland {
+      top: 0.95rem;
+      left: 2rem;
+    }
+
     .profile-picture-container {
       position: fixed;
-      top: 0.55rem;
+      top: 0.50rem;
+      right: 0.6rem;
+    }
+
+    .navbar {
+      position: fixed;
     }
 
     .navbar .menu {
       display: none;
+      position: absolute;
+      top: calc(100% + 0.7rem);
+      left: 0.5rem;
+      background: linear-gradient(135deg, #2e1c17, #463433);
+      color: #f5f5f5;
+      width: 30vw;
+      max-width: 300px;
+      min-width: 200px;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.6);
+      z-index: 10;
+      padding: 12px;
+      opacity: 0;
+      transform: scale(0.95);
+      transform-origin: top right;
+      transition: opacity 0.4s ease, transform 0.4s ease;
     }
 
     .navbar .menu.show {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
+      display: block;
+      opacity: 1;
+      transform: scale(1);
     }
 
     .navbar nav ul {
+      display: flex;
       flex-direction: column;
-      align-items: center;
+      align-items: flex-start;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      li {
+        margin: 10px 0;
+
+        a {
+          color: #f5f5f5;
+          text-decoration: none;
+          padding: 5px 8px;
+          border-radius: 6px;
+          transition: background 0.3s, color 0.3s;
+
+          &:hover {
+            background: rgba(255, 255, 255, 0.1);
+          }
+        }
+      }
     }
   }
 }
