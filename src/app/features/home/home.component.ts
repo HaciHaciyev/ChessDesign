@@ -15,15 +15,20 @@ export class HomeComponent implements OnInit {
     this.updateChessBoardSize();
   }
 
-  @HostListener('window:resize')
-  onWindowResize(): void {
+  @HostListener('window:resize', ['$event'])
+  onResize(): void {
     this.updateChessBoardSize();
   }
 
   private updateChessBoardSize(): void {
-    const viewportWidth: number = window.innerWidth;
-    const viewportHeight: number = window.innerHeight;
+    const zoomLevel: number = window.innerWidth / window.outerWidth;
 
-    this.chessBoardSize = Math.min(viewportWidth, viewportHeight) * 0.6;
+    const scaledWidth: number = window.innerWidth / zoomLevel;
+    const scaledHeight: number = window.innerHeight / zoomLevel;
+
+    const sizeBasedOnWidth: number = Math.min(scaledWidth * 0.4, 600);
+    const sizeBasedOnHeight: number = Math.min(scaledHeight * 0.5, 600);
+
+    this.chessBoardSize = Math.min(sizeBasedOnWidth, sizeBasedOnHeight + 50);
   }
 }
