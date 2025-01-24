@@ -11,7 +11,8 @@ $main-text-font: "Georgia", serif;
   position: relative;
   width: 100vw;
   height: 100vh;
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
   display: grid;
   justify-content: center;
   align-items: center;
@@ -21,8 +22,8 @@ $main-text-font: "Georgia", serif;
 
   .content {
     position: relative;
-    top: -2.5rem;
-    left: -3.5rem;
+    top: -5%;
+    left: -65%;
     display: grid;
     align-items: flex-start;
 
@@ -62,49 +63,34 @@ $main-text-font: "Georgia", serif;
     .chess-board-container {
       width: auto;
       height: auto;
-      margin-top: -33rem;
-      margin-left: 55rem;
+      margin-top: -85%;
+      margin-left: 140%;
     }
   }
 
-  // COMMON SCREEN RESOLUTIONS FOR DESKTOP
-
-  @media only screen and  (min-width: 1366px) and (min-height: 768px) {
+  @media only screen and (min-height: 800px) {
     .content {
-      left: -3.5rem;
+      top: -12%;
+    }
+  }
+
+  @media only screen and (min-height: 900px) {
+    .content {
+      top: -15%;
+    }
+  }
+
+  @media only screen and (max-width: 1400px) {
+    .content {
+      left: -55%;
 
       .chess-board-container {
-        margin-left: 48rem;
+        margin-left:  125%;
       }
     }
   }
 
-  @media (width: 1280px) and (height: 720px) {
-    .content {
-      left: -4rem;
-
-      .chess-board-container {
-        margin-left: 46rem;
-      }
-    }
-  }
-
-  @media (min-width: 1440px) and (min-height: 900px) {
-    .content {
-      top: -8rem;
-    }
-  }
-
-  @media (width: 1600px) and (height: 900px) {
-    .content {
-
-      .chess-board-container {
-        margin-top: -34rem;
-      }
-    }
-  }
-
- @media screen and (width: 2560px ) and (height: 1440px) {
+  @media only screen and (min-width: 2560px ) {
     .content {
       .home-text {
         width: 54rem;
@@ -121,81 +107,48 @@ $main-text-font: "Georgia", serif;
           font-size: 4.25rem;
         }
       }
+    }
+  }
+
+  @media only screen and (min-width: 768px) and (max-width: 1300px) {
+    // TODO for tablets
+  }
+
+  @media only screen and (max-width: 767px) {
+    .content {
+      top: -25%;
+      left: -6%;
+
+      .home-text {
+        width: 90%;
+        margin: 0 auto;
+
+        .home-heading {
+          font-size: 2rem;
+          text-align: center;
+        }
+
+        .home-paragraph {
+          font-size: 1.2rem;
+          line-height: 1.5;
+          text-align: justify;
+        }
+
+        .home-close-heading {
+          font-size: 1.5rem;
+          text-align: center;
+        }
+      }
 
       .chess-board-container {
-        margin-top: -54rem;
-        margin-left: 82rem;
+        display: none;
       }
     }
- }
-
-  // COMMON SCREEN RESOLUTIONS FOR TABLET
-
-  @media (min-width: 768px) and (min-height: 1024px) {
-
-  }  @media (min-width: 1024px) and (min-height: 768px) {
-
   }
 
-  @media (min-width: 810px) and (min-height: 1080px) {
-
-  }  @media (min-width: 1080px) and (min-height: 810px) {
-
-  }
-
-  @media (min-width: 820px) and (min-height: 1180px) {
-
-  } @media (min-width: 1180px) and (min-height: 820px) {
-
-  }
-
-  @media (min-width: 1280px) and (min-height: 800px) {
-
-  } @media (min-width: 800px) and (min-height: 1280px) {
-
-  }
-
-  @media (min-width: 601px) and (min-height: 962px) {
-
-  } @media (min-width: 962px) and (min-height: 601px) {
-
-  }
-
-  // COMMON SCREEN RESOLUTIONS FOR MOBILE
-
-  @media (min-width: 360px) and (min-height: 800px) {
-
-  } @media (min-width: 800px) and (min-height: 360px) {
-
-  }
-
-  @media (min-width: 390px) and (min-height: 844px) {
-
-  } @media (min-width: 844px) and (min-height: 390px) {
-
-  }
-
-  @media (min-width: 393px) and (min-height: 873px) {
-
-  } @media (min-width: 873px) and (min-height: 393px) {
-
-  }
-
-  @media (min-width: 412px) and (min-height: 915px) {
-
-  } @media (min-width: 915px) and (min-height: 412px) {
-
-  }
-
-  @media (min-width: 414px) and (min-height: 896px) {
-
-  } @media (min-width: 896px) and (min-height: 414px) {
-
-  }
-
-  @media (min-width: 360px) and (min-height: 780px) {
-
-  } @media (min-width: 780px) and (min-height: 360px) {
-
+  @media only screen and (max-width: 767px) and (max-height: 660px) {
+    .content {
+      top: -10%;
+    }
   }
 }
