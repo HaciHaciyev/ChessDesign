@@ -6,6 +6,48 @@
 $home-background: linear-gradient(90deg, #5c4033 50%, #000000 50%) fixed;
 $radial-gradient: radial-gradient(#480d35, #17151d);
 $main-text-font: "Georgia", serif;
+@mixin home-text-styles($text-width, $heading-size, $paragraph-size, $paragraph-line, $close-heading-size,
+                                           $text-align-global: left, $text-align-header: left, $text-align-paragraph: left, $text-align-close-header: left,
+                                           $letter-spacing: normal, $word-spacing: normal) {
+  .home-text {
+    width: $text-width;
+    margin: 0 auto;
+    text-align: $text-align-global;
+    color: #d4c4bc;
+    padding: 1rem;
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    letter-spacing: $letter-spacing;
+    word-spacing: $word-spacing;
+
+    .home-heading {
+      font-family: "Satisfy", cursive;
+      font-size: $heading-size;
+      color: #e3c3a5;
+      text-shadow: 0 0 10px #5c4033;
+      text-align: $text-align-header;
+    }
+
+    .home-paragraph {
+      font-family: $main-text-font;
+      font-size: $paragraph-size;
+      margin-top: -1.5rem;
+      line-height: $paragraph-line;
+      color: #cbb9a8;
+      text-align: $text-align-paragraph;
+    }
+
+    .home-close-heading {
+      font-family: "Satisfy", cursive;
+      font-size: $close-heading-size;
+      margin-top: 1rem;
+      color: #bba294;
+      text-shadow: 0 0 5px #5c4033;
+      text-align: $text-align-close-header;
+    }
+  }
+}
 
 .home {
   position: relative;
@@ -27,44 +69,14 @@ $main-text-font: "Georgia", serif;
     display: grid;
     align-items: flex-start;
 
-    .home-text {
-      width: 37rem;
-      text-align: left;
-      color: #d4c4bc;
-      padding: 1rem;
-      white-space: normal;
-      overflow-wrap: break-word;
-      word-break: break-word;
-
-      .home-heading {
-        font-family: "Satisfy", cursive;
-        font-size: 3.5rem;
-        color: #e3c3a5;
-        text-shadow: 0 0 10px #5c4033;
-      }
-
-      .home-paragraph {
-        font-family: $main-text-font;
-        font-size: 1.6rem;
-        margin-top: -1.5rem;
-        line-height: 1.8;
-        color: #cbb9a8;
-      }
-
-      .home-close-heading {
-        font-family: "Satisfy", cursive;
-        font-size: 2.5rem;
-        margin-top: 1rem;
-        color: #bba294;
-        text-shadow: 0 0 5px #5c4033;
-      }
-    }
-
+    @include home-text-styles(37rem, 3.5rem, 1.6rem, 1.8, 2.5rem);
     .chess-board-container {
       margin-top: -83%;
       margin-left: 140%;
     }
   }
+
+  /** FOR DESKTOPS */
 
   @media only screen and (min-height: 800px) {
     .content {
@@ -81,7 +93,6 @@ $main-text-font: "Georgia", serif;
   @media only screen and (max-width: 1400px) {
     .content {
       left: -55%;
-
       .chess-board-container {
         margin-left:  125%;
       }
@@ -90,54 +101,34 @@ $main-text-font: "Georgia", serif;
 
   @media only screen and (min-width: 2560px ) {
     .content {
-      .home-text {
-        width: 54rem;
-
-        .home-heading {
-          font-size: 5.1rem;
-        }
-
-        .home-paragraph {
-          font-size: 2.50rem;
-        }
-
-        .home-close-heading {
-          font-size: 4.25rem;
-        }
-      }
+      @include home-text-styles(54rem, 5.1rem, 2.50rem, 1.8,  4.25rem);
     }
   }
 
-// ----------------------------------------------------------------------------------------------------------
+  /** FOR TABLETS */
 
   @media only screen and (min-width: 600px) and (max-width: 899px) {
     .content {
       top: -15%;
       left: -4%;
 
-      .home-text {
-        width: 85%;
-        margin: 0 auto;
-        text-align: center;
-
-        .home-heading {
-          font-size: 2.53rem;
-        }
-
-        .home-paragraph {
-          font-size: 1.495rem;
-          line-height: 1.84;
-        }
-
-        .home-close-heading {
-          font-size: 2.07rem;
-        }
-
-      }
-
+      @include home-text-styles(85%, 3rem, 1.495rem, 1.8, 2.07rem, center, center, center, center, 0.05rem, 0.1rem);
       .chess-board-container {
         margin-top: 5%;
         margin-left: 31.57%;
+      }
+    }
+  }
+
+  @media only screen and (min-width: 600px) and (max-width: 899px) and (orientation: landscape) {
+    .content {
+      top: -10%;
+      left: -2%;
+
+      @include home-text-styles(85%, 3rem, 1.495rem, 1.8, 2.07rem, center, center, center, center, 0.05rem, 0.1rem);
+      .chess-board-container {
+        margin-top: 3%;
+        margin-left: 20%;
       }
     }
   }
@@ -147,59 +138,22 @@ $main-text-font: "Georgia", serif;
       top: -8%;
       left: -3%;
 
-      .home-text {
-        width: 85%;
-        margin: 0 auto;
-        text-align: center;
-
-        .home-heading {
-          font-size: 2.53rem;
-        }
-
-        .home-paragraph {
-          font-size: 1.495rem;
-          line-height: 1.84;
-        }
-
-        .home-close-heading {
-          font-size: 2.07rem;
-        }
-      }
-
+      @include home-text-styles(85%, 3rem, 1.495rem, 1.8, 2.07rem, center, center, center, center, 0.05rem, 0.1rem);
       .chess-board-container {
         margin-top: 8%;
         margin-left: 30.8%;
       }
     }
   }
-  // ----------------------------------------------------------------------------------------------------------
+
+  /** FOR MOBILE */
 
   @media only screen and (max-width: 599px) {
     .content {
       top: -25%;
       left: -6%;
 
-      .home-text {
-        width: 90%;
-        margin: 0 auto;
-
-        .home-heading {
-          font-size: 2rem;
-          text-align: center;
-        }
-
-        .home-paragraph {
-          font-size: 1.2rem;
-          line-height: 1.5;
-          text-align: justify;
-        }
-
-        .home-close-heading {
-          font-size: 1.5rem;
-          text-align: center;
-        }
-      }
-
+      @include home-text-styles(90%, 2rem, 1.2rem, 1.2, 1.5rem, center, center, center, center, 0.03rem, 0.08rem);
       .chess-board-container {
         display: none;
       }
