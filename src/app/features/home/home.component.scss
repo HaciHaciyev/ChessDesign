@@ -61,9 +61,7 @@ $main-text-font: "Georgia", serif;
     }
 
     .chess-board-container {
-      width: auto;
-      height: auto;
-      margin-top: -85%;
+      margin-top: -83%;
       margin-left: 140%;
     }
   }
@@ -110,11 +108,73 @@ $main-text-font: "Georgia", serif;
     }
   }
 
-  @media only screen and (min-width: 768px) and (max-width: 1300px) {
-    // TODO for tablets
+// ----------------------------------------------------------------------------------------------------------
+
+  @media only screen and (min-width: 600px) and (max-width: 899px) {
+    .content {
+      top: -15%;
+      left: -4%;
+
+      .home-text {
+        width: 85%;
+        margin: 0 auto;
+        text-align: center;
+
+        .home-heading {
+          font-size: 2.53rem;
+        }
+
+        .home-paragraph {
+          font-size: 1.495rem;
+          line-height: 1.84;
+        }
+
+        .home-close-heading {
+          font-size: 2.07rem;
+        }
+
+      }
+
+      .chess-board-container {
+        margin-top: 5%;
+        margin-left: 31.57%;
+      }
+    }
   }
 
-  @media only screen and (max-width: 767px) {
+  @media only screen and (min-width: 900px) and (max-width: 1199px) {
+    .content {
+      top: -8%;
+      left: -3%;
+
+      .home-text {
+        width: 85%;
+        margin: 0 auto;
+        text-align: center;
+
+        .home-heading {
+          font-size: 2.53rem;
+        }
+
+        .home-paragraph {
+          font-size: 1.495rem;
+          line-height: 1.84;
+        }
+
+        .home-close-heading {
+          font-size: 2.07rem;
+        }
+      }
+
+      .chess-board-container {
+        margin-top: 8%;
+        margin-left: 30.8%;
+      }
+    }
+  }
+  // ----------------------------------------------------------------------------------------------------------
+
+  @media only screen and (max-width: 599px) {
     .content {
       top: -25%;
       left: -6%;
@@ -146,7 +206,7 @@ $main-text-font: "Georgia", serif;
     }
   }
 
-  @media only screen and (max-width: 767px) and (max-height: 660px) {
+  @media only screen and (max-width: 599px) and (max-height: 660px) {
     .content {
       top: -10%;
     }

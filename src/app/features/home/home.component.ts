@@ -29,6 +29,6 @@ export class HomeComponent implements OnInit {
     const sizeBasedOnWidth: number = Math.min(scaledWidth * 0.4, 600);
     const sizeBasedOnHeight: number = Math.min(scaledHeight * 0.5, 600);
 
-    this.chessBoardSize = Math.min(sizeBasedOnWidth, sizeBasedOnHeight + 50);
+    this.chessBoardSize = Math.min(sizeBasedOnWidth, sizeBasedOnHeight + 40);
   }
 }

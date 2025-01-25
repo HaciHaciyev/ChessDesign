@@ -37,7 +37,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
               private storage: StorageService,
               private router: Router) {
     this.isTouchDevice = this.deviceService.isTouchDevice();
-    this.debounceTime = this.isTouchDevice ? 1500 : 700;
+    this.debounceTime = this.isTouchDevice ? 2000 : 700;
   }
 
   ngOnInit(): void {
