@@ -151,4 +151,10 @@
       }
     }
   }
+
+  @media screen and (orientation: landscape) and ((max-width: 385px) or (max-height: 385px)) {
+    .navbar {
+      font-size: 1rem;
+    }
+  }
 }
