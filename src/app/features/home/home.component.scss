@@ -76,8 +76,6 @@ $main-text-font: "Georgia", serif;
     }
   }
 
-  /** FOR DESKTOPS */
-
   @media only screen and (min-height: 800px) {
     .content {
       top: -12%;
@@ -104,8 +102,6 @@ $main-text-font: "Georgia", serif;
       @include home-text-styles(54rem, 5.1rem, 2.50rem, 1.8,  4.25rem);
     }
   }
-
-  /** FOR TABLETS */
 
   @media only screen and (min-width: 600px) and (max-width: 899px) {
     .content {
@@ -146,8 +142,6 @@ $main-text-font: "Georgia", serif;
     }
   }
 
-  /** FOR MOBILE */
-
   @media only screen and (max-width: 599px) {
     .content {
       top: -25%;
@@ -163,6 +157,18 @@ $main-text-font: "Georgia", serif;
   @media only screen and (max-width: 599px) and (max-height: 660px) {
     .content {
       top: -10%;
+    }
+  }
+
+  @media only screen  and (orientation: landscape) and ((max-width: 599px) or (max-height: 559px)) {
+    .content {
+      top: -10%;
+      left: 0;
+
+      @include home-text-styles(85%, 1.8rem, 1.2rem, 1.6, 1.5rem, center, center, center, center, 0.02rem, 0.08rem);
+      .chess-board-container {
+        display: none;
+      }
     }
   }
 }
