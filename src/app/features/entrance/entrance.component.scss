@@ -5,33 +5,6 @@
   box-sizing: border-box;
 }
 
-.chessland {
-  font-family: "Georgia", Serif, serif;
-  color: global.$main-text-color;
-  cursor: pointer;
-  position: fixed;
-  top: 1rem;
-  left: 1.5rem;
-  font-size: 1.5rem;
-  text-align: left;
-  text-shadow: global.$shadow-light;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-}
-
-.message {
-  position: relative;
-  font-family: "Georgia", Serif, serif;
-  font-size: 16px;
-  cursor: pointer;
-  font-weight: 100;
-  line-height: 20px;
-  letter-spacing: 0.5px;
-  color: white;
-  z-index: 55;
-}
-
 .entrance-page {
   background: #2D6262;
   background-size: cover;
@@ -47,6 +20,56 @@
   align-items: center;
   flex-direction: column;
   font-family: 'Montserrat', sans-serif;
+
+  .message {
+    position: relative;
+    font-family: "Georgia", Serif, serif;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: 100;
+    line-height: 20px;
+    letter-spacing: 0.5px;
+    color: white;
+    z-index: 55;
+  }
+
+  .chessland {
+    font-family: "Georgia", Serif, serif;
+    color: global.$main-text-color;
+    cursor: pointer;
+    position: fixed;
+    top: 1rem;
+    left: 1.5rem;
+    font-size: 1.5rem;
+    text-align: left;
+    text-shadow: global.$shadow-light;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+  }
+
+  .container {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25),
+    0 10px 10px rgba(0,0,0,0.22);
+    position: relative;
+    overflow: hidden;
+    width: 768px;
+    max-width: 100%;
+    min-height: 480px;
+
+    .overlay-container {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 50%;
+      height: 100%;
+      overflow: hidden;
+      transition: transform 0.6s ease-in-out;
+      z-index: 100;
+    }
+  }
 }
 
 .entrance-h1 {
@@ -147,18 +170,6 @@ button.ghost:hover {
   width: 100%;
 }
 
-.container {
-  background-color: #fff;
-  border-radius: 15px;
-  box-shadow: 0 14px 28px rgba(0,0,0,0.25),
-  0 10px 10px rgba(0,0,0,0.22);
-  position: relative;
-  overflow: hidden;
-  width: 768px;
-  max-width: 100%;
-  min-height: 480px;
-}
-
 .form-container {
   position: absolute;
   top: 0;
@@ -200,17 +211,6 @@ button.ghost:hover {
     opacity: 1;
     z-index: 5;
   }
-}
-
-.overlay-container {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: 50%;
-  height: 100%;
-  overflow: hidden;
-  transition: transform 0.6s ease-in-out;
-  z-index: 100;
 }
 
 .container.right-panel-active .overlay-container{
