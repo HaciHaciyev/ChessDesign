@@ -18,10 +18,11 @@ export class Entrance implements OnInit, OnDestroy {
   message: WritableSignal<string> = signal("");
   isSigningUp: WritableSignal<boolean> = signal(false);
   containerClass: WritableSignal<string> = signal("container");
+  isPhoneScreenExtension: WritableSignal<boolean> = signal(window.innerWidth < 799);
 
   constructor(private readonly messageService: MessageService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.messageSubscription = this.messageService.currentMessage.subscribe(message => {
       this.message.set(message);
     });
@@ -29,7 +30,7 @@ export class Entrance implements OnInit, OnDestroy {
     localStorage.removeItem("entrance-message");
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.messageSubscription.unsubscribe();
   }
 

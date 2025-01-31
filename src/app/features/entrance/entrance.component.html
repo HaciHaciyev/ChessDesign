@@ -7,8 +7,8 @@
     <login />
     <registration />
 
-    <div class="overlay-container">
-      <div class="overlay">
+    <div  class="overlay-container">
+      <div *ngIf="!isPhoneScreenExtension()" class="overlay">
         <div class="overlay-panel overlay-left">
           <h1 class="entrance-h1">Welcome Back to Chessland!</h1>
           <p class="entrance-p">We are glad to see you again on our chess platform.</p>
@@ -25,7 +25,12 @@
         </div>
       </div>
     </div>
-
-
   </div>
+
+  <button *ngIf="isPhoneScreenExtension() && !isSigningUp()" class="ghostphn"  (click)="handleTogglePanel()">
+    Sign Up
+  </button>
+  <button *ngIf="isPhoneScreenExtension() && isSigningUp()" class="ghostphn"  (click)="handleTogglePanel()">
+    Sign In
+  </button>
 </div>

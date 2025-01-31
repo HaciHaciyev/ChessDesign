@@ -24,11 +24,11 @@
   .message {
     position: relative;
     font-family: "Georgia", Serif, serif;
-    font-size: 16px;
+    font-size: 1rem;
     cursor: pointer;
     font-weight: 100;
-    line-height: 20px;
-    letter-spacing: 0.5px;
+    line-height: 1.25rem;
+    letter-spacing: 0.031rem;
     color: white;
     z-index: 55;
   }
@@ -55,9 +55,9 @@
     0 10px 10px rgba(0,0,0,0.22);
     position: relative;
     overflow: hidden;
-    width: 768px;
-    max-width: 100%;
-    min-height: 480px;
+    width: 90vw;
+    max-width: 50%;
+    min-height: 60vh;
 
     .overlay-container {
       position: absolute;
@@ -76,48 +76,52 @@
   color: #2e2e2e;
   font-weight: bold;
   font-family: "Georgia", Serif, serif;
-  font-size: 18px;
+  font-size: 1.125rem;
   cursor: pointer;
   margin: 0;
 }
 
 .overlay-panel h1 {
   color: white;
-  font-size: 36px;
+  font-size: 2rem;
 }
 
 .sign-in-container h1 {
-  font-size: 36px;
+  font-size:  1.7526rem;
 }
 
 .sign-up-container h1 {
-  font-size: 36px;
+  font-size: 1.7526rem;
 }
 
 .entrance-p {
   font-family: "Georgia", Serif, serif;
-  font-size: 16px;
+  font-size: 1rem;
   color: #f5e0c3;
   cursor: pointer;
   font-weight: 100;
-  line-height: 20px;
-  letter-spacing: 0.5px;
-  margin: 20px 0 30px;
+  line-height: 1.125rem;
+  letter-spacing: 0.031rem;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  margin-left: 0;
 }
 
 .entrance-button {
   all: unset;
+  margin-top: 0.5rem;
+  width: 100%;
   display: inline-block;
   box-sizing: border-box;
   border-radius: 10px;
   background: linear-gradient(135deg, #2e2e2e, #1e1e1e);
   color: #FFFFFF;
-  font-size: 12px;
+  font-size: 0.75rem;
   font-family: "Georgia", Serif, serif;
   cursor: pointer;
   font-weight: bold;
-  padding: 12px 45px;
-  letter-spacing: 1px;
+  padding: 0.75rem 2.8125rem;
+  letter-spacing: 0.0625rem;
   text-transform: uppercase;
   transition: transform 80ms ease-in;
 }
@@ -132,7 +136,8 @@ button.ghost:hover,
 button.ghost:focus,
 button.ghost:focus-visible {
   color: #FFFFFF;
-  font-size: 12px;
+  width: 100%;
+  font-size: 0.75rem;
   font-family: "Georgia", Serif, serif;
   cursor: pointer;
   border-radius: 10px;
@@ -140,8 +145,8 @@ button.ghost:focus-visible {
   border-color: #FFFFFF;
   font-weight: bold;
   outline: none;
-  padding: 12px 45px;
-  letter-spacing: 1px;
+  padding: 0.75rem 2.8125rem;
+  letter-spacing: 0.0625rem;
   text-transform: uppercase;
   transition: transform 80ms ease-in;
 }
@@ -157,7 +162,7 @@ button.ghost:hover {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  padding: 0 50px;
+  padding: 0 3.125rem;
   height: 100%;
   text-align: center;
 }
@@ -165,8 +170,9 @@ button.ghost:hover {
 .entrance-input {
   background-color: #dbdada;
   border: none;
-  padding: 12px 15px;
-  margin: 8px 0;
+  border-radius: 0.5rem;
+  padding: 0.75rem 0.9375rem;
+  margin: 0.5rem 0;
   width: 100%;
 }
 
@@ -241,7 +247,7 @@ button.ghost:hover {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  padding: 0 40px;
+  padding: 0 2.5rem;
   text-align: center;
   top: 0;
   height: 100%;
@@ -265,4 +271,46 @@ button.ghost:hover {
 
 .container.right-panel-active .overlay-right {
   transform: translateX(20%);
+}
+
+@media (max-width: 799px) {
+  .container {
+    max-width: 85% !important;
+  }
+
+  .sign-up-container h1,
+  .sign-up-container h1 {
+    font-size: 1.5rem;
+  }
+
+  .sign-in-container {
+    width: 100%;
+    height: auto;
+    left: 0;
+    top: 25%;
+    transform: none;
+  }
+
+  .sign-up-container {
+    width: 100%;
+    height: auto;
+    top: 12%;
+    left: -85vw;
+  }
+
+  .ghostphn {
+    position: fixed;
+    top: 82%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1rem;
+    z-index: 10;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 0.75rem 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    width: 50%;
+  }
 }
