@@ -56,8 +56,11 @@
     position: relative;
     overflow: hidden;
     width: 90vw;
-    max-width: 50%;
-    min-height: 60vh;
+    height: 60vh;
+    max-width: 800px;
+    min-width: 300px;
+    min-height: 400px;
+    max-height: 60vh;
 
     .overlay-container {
       position: absolute;
@@ -295,7 +298,7 @@ button.ghost:hover {
     width: 100%;
     height: auto;
     top: 12%;
-    left: -85vw;
+    left: -85.5vw;
   }
 
   .ghostphn {
@@ -306,11 +309,54 @@ button.ghost:hover {
     font-size: 1rem;
     z-index: 10;
     color: white;
-    background-color: rgba(0, 0, 0, 0.7);
-    padding: 0.75rem 1.5rem;
+    background: linear-gradient(135deg, #7d5544, #463433);
+    padding: 0.5rem 0.1rem;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     text-align: center;
+    font-weight: bold;
     width: 50%;
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+  }
+
+  @keyframes buttonPress {
+    0% {
+      transform: translateX(-50%) scale(1);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+    50% {
+      transform: translateX(-50%) scale(0.95);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+    100% {
+      transform: translateX(-50%) scale(1);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  .ghostphn:active {
+    animation: buttonPress 0.5s ease;
+  }
+}
+
+@media screen and  (max-width: 799px) and (min-height: 751px) {
+  .sign-in-container {
+    top: 30%;
+  }
+
+  .sign-up-container {
+    top: 20%;
+  }
+}
+
+@media screen and (max-height: 651px) {
+  .ghostphn {
+    top: 83%;
+  }
+}
+
+@media screen and  (max-height: 600px) {
+  .ghostphn {
+    top: 85%;
   }
 }
